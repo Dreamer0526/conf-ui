@@ -2,10 +2,13 @@
   min-height: 120px;
   text-align: center; 
   align-items: baseline;
+  
+  margin: $half-space;
+  padding: $base-space 0;
+
   border-radius: 6px;
   background-color: $color-grey-light;
   box-shadow: 0.5px 0.5px 3px $color-shadow, 0.5px -0.5px 3px $color-shadow, -0.5px 0.5px 3px $color-shadow, -0.5px -0.5px 3px $color-shadow;
-  padding: $base-space 0;
 
   .card-body {
     font-size: 32px;
