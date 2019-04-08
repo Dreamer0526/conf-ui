@@ -2,9 +2,10 @@ import * as React from "react";
 import { Row, Col, Button } from "antd";
 import * as COMPONENT_TYPE from "../../metadata/componentTypes";
 
+
 class PageRenderer extends React.Component {
 
-  renderText({ name = "", text = "", width = 24, offset = 0 }) {
+  renderText({ text = "", width, offset = 0 }) {
     return (
       <Col md={width} offset={offset} style={{ border: "1px solid" }}>
         {text}
@@ -12,7 +13,7 @@ class PageRenderer extends React.Component {
     );
   }
 
-  renderButton({ width = 24, offset = 0, label = "" }) {
+  renderButton({ width, offset = 0, label = "" }) {
     return (
       <Col md={width} offset={offset}>
         <Button> {label} </Button>
@@ -20,7 +21,7 @@ class PageRenderer extends React.Component {
     );
   }
 
-  renderIcon({ width = 24, offset = 0, text = "" }) {
+  renderIcon({ width, offset = 0, text = "" }) {
     return (
       <Col md={width} offset={offset}>
         <div className={`icon ${text}`} />
@@ -28,7 +29,7 @@ class PageRenderer extends React.Component {
     )
   }
 
-  renderCard({ width = 24, offset = 0, children = [] }) {
+  renderCard({ width, offset = 0, children = [] }) {
     return (
       <Col md={width} offset={offset}>
         {children.map(child => this.renderComponent(child))}
@@ -37,7 +38,7 @@ class PageRenderer extends React.Component {
   }
 
   renderComponent(desc) {
-    const { type = COMPONENT_TYPE.TEXT } = desc;
+    const { type } = desc;
 
     switch (type) {
       case COMPONENT_TYPE.TEXT:
@@ -52,8 +53,14 @@ class PageRenderer extends React.Component {
       case COMPONENT_TYPE.CARD:
         return this.renderCard(desc);
 
+      case COMPONENT_TYPE.COMPOSITE:
       default:
-        return null;
+        const { children = [], width = 24 } = desc;
+        return (
+          <Col md={width}>
+            {children.map(child => this.renderComponent(child))}
+          </Col>
+        );
     }
   }
 
