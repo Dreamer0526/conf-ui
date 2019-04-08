@@ -1,4 +1,5 @@
 import { CARD } from "../componentTypes";
+// import { TEST } from "../actionTypes";
 
 /**
  * card component can be passed in 1 to 3 params
@@ -19,6 +20,9 @@ export function card() {
   const cardDescriptor = [{
     type: CARD,
     width: 6,
+    // events: {
+    //   onClick: TEST
+    // },
     children: [
       {
         width: 24,

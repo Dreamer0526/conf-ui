@@ -1,4 +1,5 @@
 import * as React from "react";
+import { connect } from "react-redux";
 import { Row, Col, Button } from "antd";
 
 import * as COMPONENT_TYPE from "../../metadata/componentTypes";
@@ -55,9 +56,9 @@ class PageRenderer extends React.Component {
     return result;
   }
 
-  renderButton({ text = "" }) {
+  renderButton({ text = "", events = {} }) {
     return (
-      <Button> {text} </Button>
+      <Button {...this.registerEvents(events)}> {text} </Button>
     );
   }
 
@@ -67,14 +68,38 @@ class PageRenderer extends React.Component {
     );
   }
 
-  renderCard({ width, offset = 0, children = [] }) {
+  renderCard({ width, offset = 0, children = [], events = {} }) {
     return (
-      <Col sm={width} offset={offset} className="card">
+      <Col sm={width} offset={offset} className="card" {...this.registerEvents(events)}>
         {children.map(child => this.renderComponent(child))}
       </Col>
     );
   }
 
+
+  registerEvents(events) {
+    const result = {};
+
+    for (let [event, actionType] of Object.entries(events)) {
+      Object.defineProperty(
+        result,
+        event,
+        {
+          value: () => this.props.dispatch({ type: actionType }),
+          enumerable: true
+        }
+      );
+    }
+    return result;
+  }
+
 }
 
-export default PageRenderer;
+
+const mapDispatchToProps = dispatch => ({
+  dispatch: action => dispatch(action)
+});
+
+export default connect(
+  mapDispatchToProps
+)(PageRenderer);
