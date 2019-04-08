@@ -1,0 +1,25 @@
+.icon {
+  display: inline-block;
+  height: 20px;
+  width: 14px;
+  background: no-repeat center center;
+  background-size: contain;
+  vertical-align: middle;
+  margin-right: 5px;
+
+  &.arch {
+    background-image: url("../static/icons/arch.png");
+  }
+
+  &.cycle {
+    background-image: url("../static/icons/cycle.png");
+  }
+
+  &.scv {
+    background-image: url("../static/icons/scv.png");
+  }
+
+  &.wmp {
+    background-image: url("../static/icons/wmp.png");
+  }
+}
