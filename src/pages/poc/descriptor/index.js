@@ -1,30 +1,26 @@
 import { card } from "../../../metadata/descriptors/card";
-import { text, button, icon } from "../../../metadata/descriptors/basics";
+import * as COMPONENT_TYPE from "../../../metadata/componentTypes";
 
 
 const header = [{
-  ...icon
+  type: COMPONENT_TYPE.ICON,
+  text: "arch"
 }, {
-  ...text,
-  width: 22,
-  text: "This is header of card"
+  type: COMPONENT_TYPE.TEXT,
+  text: "线索下发率"
 }];
 
 const body = [{
-  ...text,
-  width: 24,
-  text: "Sdafwefd azdfs. Lsddsf had fhadjsklf, lkasdfhadb adsf."
+  type: COMPONENT_TYPE.TEXT,
+  text: "${v}",
+  values: ["leads_dist_rate"]
 }];
 
 const footer = [{
-  ...button,
-  label: "Cancel"
-}, {
-  ...button,
-  label: "Submit"
+  type: COMPONENT_TYPE.TEXT,
+  text: "共下发条数: ${v}",
+  values: ["total_dist_num"]
 }];
 
 
-export default card({
-  header, body, footer
-});
+export default card(header, body, footer);

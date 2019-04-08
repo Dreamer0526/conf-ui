@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 
-import demo from "./reducers/demoReducer";
+import poc from "./reducers/pocReducer";
 
 export const reducers = combineReducers({
-  demo
+  poc
 });

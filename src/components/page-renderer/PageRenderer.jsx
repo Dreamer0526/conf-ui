@@ -1,39 +1,15 @@
 import * as React from "react";
 import { Row, Col, Button } from "antd";
-import * as COMPONENT_TYPE from "../../metadata/componentTypes";
 
+import * as COMPONENT_TYPE from "../../metadata/componentTypes";
 
 class PageRenderer extends React.Component {
 
-  renderText({ text = "", width, offset = 0 }) {
+  render() {
     return (
-      <Col md={width} offset={offset} style={{ border: "1px solid" }}>
-        {text}
-      </Col >
-    );
-  }
-
-  renderButton({ width, offset = 0, label = "" }) {
-    return (
-      <Col md={width} offset={offset}>
-        <Button> {label} </Button>
-      </Col>
-    );
-  }
-
-  renderIcon({ width, offset = 0, text = "" }) {
-    return (
-      <Col md={width} offset={offset}>
-        <div className={`icon ${text}`} />
-      </Col>
-    )
-  }
-
-  renderCard({ width, offset = 0, children = [] }) {
-    return (
-      <Col md={width} offset={offset}>
-        {children.map(child => this.renderComponent(child))}
-      </Col>
+      <Row className="page-renderer">
+        {this.props.descriptor.map(desc => this.renderComponent(desc))}
+      </Row>
     );
   }
 
@@ -53,24 +29,52 @@ class PageRenderer extends React.Component {
       case COMPONENT_TYPE.CARD:
         return this.renderCard(desc);
 
-      case COMPONENT_TYPE.COMPOSITE:
       default:
-        const { children = [], width = 24 } = desc;
+        const { children = [], width = 24, cssFor = "" } = desc;
         return (
-          <Col md={width}>
+          <Col sm={width} className={cssFor}>
             {children.map(child => this.renderComponent(child))}
           </Col>
         );
     }
   }
 
-  render() {
+  renderText({ text = "", values = [] }) {
+    const { data } = this.props;
+
+    /**
+     * Replace value placeholders with real values
+     */
+    let index = 0;
+    const result = text.replace(/\${v}/gi, () => {
+      const name = values[index];
+      index = index + 1;
+      return data[name];
+    });
+
+    return result;
+  }
+
+  renderButton({ text = "" }) {
     return (
-      <Row className="page-renderer">
-        {this.props.descriptor.map(desc => this.renderComponent(desc))}
-      </Row>
+      <Button> {text} </Button>
     );
   }
+
+  renderIcon({ text = "" }) {
+    return (
+      <span className={`icon ${text}`} />
+    );
+  }
+
+  renderCard({ width, offset = 0, children = [] }) {
+    return (
+      <Col sm={width} offset={offset} className="card">
+        {children.map(child => this.renderComponent(child))}
+      </Col>
+    );
+  }
+
 }
 
 export default PageRenderer;

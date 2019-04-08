@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from "react-redux";
+
 import PageRenderer from "../../components/page-renderer/PageRenderer";
 
 import descriptor from "./descriptor";
@@ -7,9 +9,21 @@ import descriptor from "./descriptor";
 class POC extends React.Component {
   render() {
     return (
-      <PageRenderer descriptor={descriptor} />
+      <PageRenderer
+        data={this.props.data}
+        descriptor={descriptor}
+      />
     );
   }
 }
 
-export default POC;
+const mapStateToProps = state => state.poc;
+
+const mapDispatchToProps = dispatch => ({
+  dispatch: action => dispatch(action)
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(POC);

@@ -1,5 +1,17 @@
-@import "./components/icon";
+@import "./variables";
 
-.ant-col {
-  border: 1px solid;
+@import "./components/icon";
+@import "./components/card";
+
+
+body {
+  font-size: 16px;
+  color: $color-text;
+  background-color: $color-grey;
+  font-family: "PingFangSC-Light", 'HelveticaNeue-Light', "Microsoft YaHei UI", "Microsoft YaHei", "sans-serif";
+}
+
+.app {
+  position: relative;
+  min-height: 100vh;
 }
