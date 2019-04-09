@@ -4,19 +4,9 @@ import { week_totle_leads_card, leads_dist_rate_card, vip_cust_rate_card, aum_im
 
 export default [
   {
-    type: COMPONENT.TABS,
-    innerWidth: 20,
-    innerOffset: 2,
-    tabs: [
-      {
-        key: "home",
-        title: "home",
-        children: [week_totle_leads_card, leads_dist_rate_card, vip_cust_rate_card, aum_imp_est_card]
-      },
-      {
-        key: "profile",
-        title: "profile"
-      }
-    ]
+    type: COMPONENT.LAYOUT,
+    width: 20,
+    offset: 2,
+    children: [week_totle_leads_card, leads_dist_rate_card, vip_cust_rate_card, aum_imp_est_card]
   }
-]
+];

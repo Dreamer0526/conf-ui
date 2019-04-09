@@ -55,13 +55,9 @@ class PageRenderer extends React.Component {
           />
         );
 
+      case COMPONENT.LAYOUT:
       default:
-        const { children = [], width = 24, cssFor = "" } = field;
-        return (
-          <Col sm={width} className={cssFor}>
-            {children.map(child => this.renderComponent(child))}
-          </Col>
-        );
+        return this.renderLayout(field);
     }
   }
 
@@ -91,6 +87,14 @@ class PageRenderer extends React.Component {
   renderIcon({ text = "" }) {
     return (
       <span className={`icon ${text}`} />
+    );
+  }
+
+  renderLayout({ width = 24, offset = 0, children = [], cssFor = "" }) {
+    return (
+      <Col sm={width} offset={offset} className={cssFor}>
+        {children.map(child => this.renderComponent(child))}
+      </Col>
     );
   }
 
