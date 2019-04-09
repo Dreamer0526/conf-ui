@@ -1,4 +1,4 @@
-import { card } from "../../../metadata/descriptors/card";
+import { card } from "../../../descriptors/card";
 import * as COMPONENT from "../../../metadata/componentTypes";
 
 

@@ -6,18 +6,14 @@ import Poc from "./views/poc/Poc";
 import PageRenderer from "./views/page-renderer/PageRenderer";
 
 import * as ACTION from "./metadata/actionTypes";
-import * as COMPONENT from "./metadata/componentTypes";
+
+import { menuField } from "./descriptors/menu";
 
 const { Content, Footer, Sider } = Layout;
 
 const descriptor = [
-  // {
-  //   type: COMPONENT.ICON,
-  //   text: "scv"
-  // },
   {
-    type: COMPONENT.MENU,
-    mode: "vertical",
+    ...menuField,
     structure: [{
       title: <span className="icon wmp" />,
       options: [

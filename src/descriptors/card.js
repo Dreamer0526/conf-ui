@@ -1,5 +1,5 @@
-import { CARD } from "../componentTypes";
-// import { TEST } from "../actionTypes";
+import { CARD } from "../metadata/componentTypes";
+import { TEST } from "../metadata/actionTypes";
 
 /**
  * card component can be passed in 1 to 3 params
@@ -42,3 +42,32 @@ export function card() {
 
   return cardDescriptor;
 }
+
+export const cardField = {
+  type: CARD,
+  width: 6,
+  events: {
+    onClick: TEST,
+  },
+  children: [
+    {
+      width: 24,
+      children: [
+        // array of component descriptors
+      ],
+      cssFor: "card-header"
+    }, {
+      width: 24,
+      children: [
+        // array of component descriptors
+      ],
+      cssFor: "card-body"
+    }, {
+      width: 24,
+      children: [
+        // array of component descriptors
+      ],
+      cssFor: "card-footer"
+    }
+  ]
+};
