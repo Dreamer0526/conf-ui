@@ -1,8 +1,10 @@
-import * as React from "react";
+import React from "react";
+import { Menu } from "antd";
 import { connect } from "react-redux";
 import { Row, Col, Button } from "antd";
 
-import * as COMPONENT_TYPE from "../../metadata/componentTypes";
+import * as COMPONENT from "../../metadata/componentTypes";
+
 
 class PageRenderer extends React.Component {
 
@@ -18,17 +20,20 @@ class PageRenderer extends React.Component {
     const { type } = desc;
 
     switch (type) {
-      case COMPONENT_TYPE.TEXT:
+      case COMPONENT.TEXT:
         return this.renderText(desc);
 
-      case COMPONENT_TYPE.BUTTON:
+      case COMPONENT.BUTTON:
         return this.renderButton(desc);
 
-      case COMPONENT_TYPE.ICON:
+      case COMPONENT.ICON:
         return this.renderIcon(desc);
 
-      case COMPONENT_TYPE.CARD:
+      case COMPONENT.CARD:
         return this.renderCard(desc);
+
+      case COMPONENT.MENU:
+        return this.renderMenu(desc);
 
       default:
         const { children = [], width = 24, cssFor = "" } = desc;
@@ -47,7 +52,7 @@ class PageRenderer extends React.Component {
      * Replace value placeholders with real values
      */
     let index = 0;
-    const result = text.replace(/\${v}/gi, () => {
+    const result = text.replace(/%{v}/gi, () => {
       const name = values[index];
       index = index + 1;
       return data[name];
@@ -75,6 +80,28 @@ class PageRenderer extends React.Component {
       </Col>
     );
   }
+
+  renderMenu({ structure = [], mode = "vertical" }) {
+    return (
+      <Menu mode={mode}>
+        {structure.map((item, index) => {
+          const { title = "", options = [] } = item;
+
+          return (
+            <Menu.SubMenu key={`submenu-${index}`} title={title}>
+              {options.map(
+                ({ key, label, action }) =>
+                  <Menu.Item key={key} onClick={() => action && this.props.dispatch({ type: action })} >
+                    {label}
+                  </Menu.Item>
+              )}
+            </Menu.SubMenu>
+          );
+        })}
+      </Menu>
+    );
+  }
+
 
 
   registerEvents(events) {
