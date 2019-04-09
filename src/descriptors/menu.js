@@ -10,7 +10,9 @@ export const menuField = {
       {
         key: "key",
         label: "label",
-        action: TEST
+        events: {
+          onClick: TEST
+        }
       }
     ]
   }]

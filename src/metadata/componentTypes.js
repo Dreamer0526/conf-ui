@@ -4,3 +4,4 @@ export const BUTTON = "button";
 
 export const CARD = "card";
 export const MENU = "menu";
+export const TABS = "tabs";

@@ -23,7 +23,9 @@ const descriptor = [
         }, {
           key: "lead",
           label: <Link to="/lead"><span className="icon wmp" />智能大脑线索上传</Link>,
-          action: ACTION.ROUTE_TO_LEAD
+          events: {
+            onClick: ACTION.ROUTE_TO_LEAD
+          }
         }, {
           key: "arch",
           label: <Link to="/arch"><span className="icon wmp" />产品架构</Link>,

@@ -22,5 +22,22 @@ const footer = [{
   values: ["total_dist_num"]
 }];
 
-
-export default card(header, body, footer);
+export default [
+  {
+    type: COMPONENT.TABS,
+    innerWidth: 20,
+    innerOffset: 2,
+    tabs: [
+      {
+        key: "home",
+        title: "home",
+        children: [card(header, body, footer)]
+      },
+      {
+        key: "profile",
+        title: "profile",
+        children: footer
+      }
+    ]
+  }
+]

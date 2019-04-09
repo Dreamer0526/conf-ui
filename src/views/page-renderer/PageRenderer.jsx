@@ -1,7 +1,10 @@
 import React from "react";
-import { Menu } from "antd";
 import { connect } from "react-redux";
 import { Row, Col, Button } from "antd";
+
+import Card from "./Card";
+import Menu from "./Menu";
+import Tabs from "./Tabs";
 
 import * as COMPONENT from "../../metadata/componentTypes";
 
@@ -11,32 +14,49 @@ class PageRenderer extends React.Component {
   render() {
     return (
       <Row className="page-renderer">
-        {this.props.descriptor.map(desc => this.renderComponent(desc))}
+        {this.props.descriptor.map(field => this.renderComponent(field))}
       </Row>
     );
   }
 
-  renderComponent(desc) {
-    const { type } = desc;
+  renderComponent(field) {
+    const { type } = field;
 
     switch (type) {
       case COMPONENT.TEXT:
-        return this.renderText(desc);
+        return this.renderText(field);
 
       case COMPONENT.BUTTON:
-        return this.renderButton(desc);
+        return this.renderButton(field);
 
       case COMPONENT.ICON:
-        return this.renderIcon(desc);
+        return this.renderIcon(field);
 
       case COMPONENT.CARD:
-        return this.renderCard(desc);
+        return (
+          <Card {...field}
+            registerEvents={this.registerEvents.bind(this)}
+            renderComponent={this.renderComponent.bind(this)}
+          />
+        );
 
       case COMPONENT.MENU:
-        return this.renderMenu(desc);
+        return (
+          <Menu {...field}
+            registerEvents={this.registerEvents.bind(this)}
+            renderComponent={this.renderComponent.bind(this)}
+          />
+        );
+
+      case COMPONENT.TABS:
+        return (
+          <Tabs {...field}
+            renderComponent={this.renderComponent.bind(this)}
+          />
+        );
 
       default:
-        const { children = [], width = 24, cssFor = "" } = desc;
+        const { children = [], width = 24, cssFor = "" } = field;
         return (
           <Col sm={width} className={cssFor}>
             {children.map(child => this.renderComponent(child))}
@@ -44,6 +64,7 @@ class PageRenderer extends React.Component {
         );
     }
   }
+
 
   renderText({ text = "", values = [] }) {
     const { data } = this.props;
@@ -72,36 +93,6 @@ class PageRenderer extends React.Component {
       <span className={`icon ${text}`} />
     );
   }
-
-  renderCard({ width, offset = 0, children = [], events = {} }) {
-    return (
-      <Col sm={width} offset={offset} className="card" {...this.registerEvents(events)}>
-        {children.map(child => this.renderComponent(child))}
-      </Col>
-    );
-  }
-
-  renderMenu({ structure = [], mode = "vertical" }) {
-    return (
-      <Menu mode={mode}>
-        {structure.map((item, index) => {
-          const { title = "", options = [] } = item;
-
-          return (
-            <Menu.SubMenu key={`submenu-${index}`} title={title}>
-              {options.map(
-                ({ key, label, action }) =>
-                  <Menu.Item key={key} onClick={() => action && this.props.dispatch({ type: action })} >
-                    {label}
-                  </Menu.Item>
-              )}
-            </Menu.SubMenu>
-          );
-        })}
-      </Menu>
-    );
-  }
-
 
 
   registerEvents(events) {

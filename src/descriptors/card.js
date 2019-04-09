@@ -17,9 +17,10 @@ export function card() {
     [header, body, footer] = arguments;
   }
 
-  const cardDescriptor = [{
+  const cardField = {
     type: CARD,
-    width: 6,
+    width: 5,
+    offset: 1,
     // events: {
     //   onClick: TEST
     // },
@@ -38,14 +39,15 @@ export function card() {
         cssFor: "card-footer"
       }
     ]
-  }];
+  };
 
-  return cardDescriptor;
+  return cardField;
 }
 
 export const cardField = {
   type: CARD,
-  width: 6,
+  width: 5,
+  offset: 1,
   events: {
     onClick: TEST,
   },
@@ -53,19 +55,19 @@ export const cardField = {
     {
       width: 24,
       children: [
-        // array of component descriptors
+        // array of fields
       ],
       cssFor: "card-header"
     }, {
       width: 24,
       children: [
-        // array of component descriptors
+        // array of fields
       ],
       cssFor: "card-body"
     }, {
       width: 24,
       children: [
-        // array of component descriptors
+        // array of fields
       ],
       cssFor: "card-footer"
     }
