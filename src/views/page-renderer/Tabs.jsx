@@ -28,7 +28,7 @@ class Tabs extends React.Component {
     const { children = [] } = tabs.find(item => item.key === activeTab) || {};
 
     return (
-      <Col sm={innerWidth} offset={innerOffset}>
+      <Col md={innerWidth} offset={innerOffset}>
         {children.map(child => this.props.renderComponent(child))}
       </Col>
     );
@@ -39,7 +39,7 @@ class Tabs extends React.Component {
     const { width = 24, offset = 0, tabs = [], mode = "horizontal" } = this.props;
 
     return (
-      <Col sm={width} offset={offset}>
+      <Col md={width} offset={offset}>
         <Menu
           defaultSelectedKeys={[activeTab]}
           onClick={this.handleClick.bind(this)}

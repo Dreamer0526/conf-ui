@@ -9,7 +9,7 @@ class Card extends React.Component {
 
     return (
       <Col
-        sm={width}
+        md={width}
         offset={offset}
         className="card"
         {...this.props.registerEvents(events)}

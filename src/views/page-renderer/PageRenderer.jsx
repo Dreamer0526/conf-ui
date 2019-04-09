@@ -62,7 +62,7 @@ class PageRenderer extends React.Component {
   }
 
 
-  renderText({ text = "", values = [] }) {
+  renderText({ text = "", values = [], cssFor = "" }) {
     const { data } = this.props;
 
     /**
@@ -75,24 +75,24 @@ class PageRenderer extends React.Component {
       return data[name];
     });
 
-    return result;
+    return <span className={cssFor}>{result}</span>;
   }
 
-  renderButton({ text = "", events = {} }) {
+  renderButton({ text = "", events = {}, cssFor = "" }) {
     return (
-      <Button {...this.registerEvents(events)}> {text} </Button>
+      <Button className={cssFor} {...this.registerEvents(events)}> {text} </Button>
     );
   }
 
-  renderIcon({ text = "" }) {
+  renderIcon({ text = "", cssFor = "" }) {
     return (
-      <span className={`icon ${text}`} />
+      <span className={`icon ${text} ${cssFor}`} />
     );
   }
 
   renderLayout({ width = 24, offset = 0, children = [], cssFor = "" }) {
     return (
-      <Col sm={width} offset={offset} className={cssFor}>
+      <Col md={width} offset={offset} className={cssFor}>
         {children.map(child => this.renderComponent(child))}
       </Col>
     );
