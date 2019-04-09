@@ -1,10 +1,12 @@
 import React from "react";
+import get from 'lodash/get';
 import { connect } from "react-redux";
 import { Row, Col, Button } from "antd";
 
 import Card from "./Card";
 import Menu from "./Menu";
 import Tabs from "./Tabs";
+import Chart from "./Chart";
 
 import * as COMPONENT from "../../metadata/componentTypes";
 
@@ -55,6 +57,9 @@ class PageRenderer extends React.Component {
           />
         );
 
+      case COMPONENT.CHART:
+        return <Chart {...field} data={this.props.data} />;
+
       case COMPONENT.LAYOUT:
       default:
         return this.renderLayout(field);
@@ -72,7 +77,7 @@ class PageRenderer extends React.Component {
     const result = text.replace(/%{v}/gi, () => {
       const name = values[index];
       index = index + 1;
-      return data[name];
+      return get(data, name, 0);
     });
 
     return <span className={cssFor}>{result}</span>;

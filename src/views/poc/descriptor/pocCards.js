@@ -2,7 +2,7 @@ import { card } from "../../../descriptors/card";
 import * as COMPONENT from "../../../metadata/componentTypes";
 
 
-export const week_totle_leads_card = card({
+export const card_week_totle_leads = card({
   header: [
     {
       type: COMPONENT.ICON,
@@ -21,7 +21,7 @@ export const week_totle_leads_card = card({
   ],
 });
 
-export const leads_dist_rate_card = card({
+export const card_leads_dist_rate = card({
   header: [
     {
       type: COMPONENT.ICON,
@@ -47,7 +47,7 @@ export const leads_dist_rate_card = card({
   ]
 });
 
-export const vip_cust_rate_card = card({
+export const card_vip_cust_rate = card({
   header: [
     {
       type: COMPONENT.ICON,
@@ -66,7 +66,7 @@ export const vip_cust_rate_card = card({
   ]
 });
 
-export const aum_imp_est_card = card({
+export const card_aum_imp_est = card({
   header: [
     {
       type: COMPONENT.ICON,

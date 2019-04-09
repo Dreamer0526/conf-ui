@@ -7,3 +7,4 @@ export const LAYOUT = "layout";
 export const CARD = "card";
 export const MENU = "menu";
 export const TABS = "tabs";
+export const CHART = "chart";

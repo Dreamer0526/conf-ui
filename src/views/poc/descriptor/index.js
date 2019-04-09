@@ -1,6 +1,8 @@
 import * as COMPONENT from "../../../metadata/componentTypes";
 
-import { week_totle_leads_card, leads_dist_rate_card, vip_cust_rate_card, aum_imp_est_card } from "./pocCards";
+import { card_week_totle_leads, card_leads_dist_rate, card_vip_cust_rate, card_aum_imp_est } from "./pocCards";
+import { chart_curr_dist_overview } from "./chart";
+import { title } from "./title";
 
 const headerField = {
   type: COMPONENT.LAYOUT,
@@ -18,25 +20,22 @@ const headerField = {
   ]
 };
 
-const titleField = {
-  type: COMPONENT.LAYOUT,
-  cssFor: "poc-title",
-  width: 24,
-  children: [
-    {
-      type: COMPONENT.TEXT,
-      cssFor: "font-18 base-margin-left",
-      text: "下发线索汇总"
-    }
-  ]
-}
+const titleField = title("下发线索汇总");
 
 export default [
   headerField,
   {
     type: COMPONENT.LAYOUT,
+    cssFor: "dbl-margin-top",
     width: 20,
     offset: 2,
-    children: [titleField, week_totle_leads_card, leads_dist_rate_card, vip_cust_rate_card, aum_imp_est_card]
+    children: [
+      titleField,
+      card_week_totle_leads,
+      card_leads_dist_rate,
+      card_vip_cust_rate,
+      card_aum_imp_est,
+      chart_curr_dist_overview
+    ]
   }
 ];

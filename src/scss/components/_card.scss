@@ -1,11 +1,10 @@
 .card {
-  min-height: 135px;
+  min-height: 120px;
   text-align: center; 
   align-items: baseline;
   
-  margin: $half-space;
   padding: $base-space 0;
-  margin: $dbl-space $base-space;
+  margin: $base-space;
 
   border-radius: 6px;
   background-color: $color-grey-light;
@@ -13,7 +12,7 @@
 
   .card-body {
     font-size: 32px;
-    line-height: 60px;
+    line-height: 45px;
     color: $color-text-blue;
   }
 
