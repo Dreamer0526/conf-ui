@@ -1,5 +1,5 @@
-import { MENU } from "../metadata/componentTypes";
-import { TEST } from "../metadata/actionTypes";
+import { MENU } from "../constants/componentTypes";
+import { TEST } from "../constants/actionTypes";
 
 export const menuField = {
   type: MENU,

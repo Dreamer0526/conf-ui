@@ -1,5 +1,5 @@
-import { CARD } from "../metadata/componentTypes";
-import { TEST } from "../metadata/actionTypes";
+import { CARD } from "../constants/componentTypes";
+import { TEST } from "../constants/actionTypes";
 
 export const card = ({ header, body, footer }) => ({
   type: CARD,

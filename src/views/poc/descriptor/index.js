@@ -1,4 +1,4 @@
-import * as COMPONENT from "../../../metadata/componentTypes";
+import * as COMPONENT from "../../../constants/componentTypes";
 
 import { card_week_totle_leads, card_leads_dist_rate, card_vip_cust_rate, card_aum_imp_est } from "./pocCards";
 import { chart_curr_dist_overview } from "./chart";
@@ -11,11 +11,11 @@ const headerField = {
   children: [
     {
       type: COMPONENT.ICON,
-      text: "cycle"
+      icon: "cycle"
     },
     {
       type: COMPONENT.TEXT,
-      text: "智能大脑下发报告"
+      textId: "header"
     }
   ]
 };

@@ -1,14 +1,14 @@
 import React from "react";
-import get from 'lodash/get';
 import { connect } from "react-redux";
 import { Row, Col, Button } from "antd";
+import { FormattedMessage } from 'react-intl';
 
 import Card from "./Card";
 import Menu from "./Menu";
 import Tabs from "./Tabs";
 import Chart from "./Chart";
 
-import * as COMPONENT from "../../metadata/componentTypes";
+import * as COMPONENT from "../../constants/componentTypes";
 
 
 class PageRenderer extends React.Component {
@@ -67,31 +67,28 @@ class PageRenderer extends React.Component {
   }
 
 
-  renderText({ text = "", values = [], cssFor = "" }) {
+  renderText({ textId, cssFor = "" }) {
     const { data } = this.props;
 
-    /**
-     * Replace value placeholders with real values
-     */
-    let index = 0;
-    const result = text.replace(/%{v}/gi, () => {
-      const name = values[index];
-      index = index + 1;
-      return get(data, name, 0);
-    });
-
-    return <span className={cssFor}>{result}</span>;
-  }
-
-  renderButton({ text = "", events = {}, cssFor = "" }) {
     return (
-      <Button className={cssFor} {...this.registerEvents(events)}> {text} </Button>
+      <span className={cssFor}>
+        <FormattedMessage
+          id={textId}
+          values={data}
+        />
+      </span>
     );
   }
 
-  renderIcon({ text = "", cssFor = "" }) {
+  renderButton({ textId, events = {}, cssFor = "" }) {
     return (
-      <span className={`icon ${text} ${cssFor}`} />
+      <Button className={cssFor} {...this.registerEvents(events)}> {textId} </Button>
+    );
+  }
+
+  renderIcon({ icon = "", cssFor = "" }) {
+    return (
+      <span className={`icon ${icon} ${cssFor}`} />
     );
   }
 

@@ -1,7 +1,7 @@
-import * as COMPONENT from "../../../metadata/componentTypes";
+import * as COMPONENT from "../../../constants/componentTypes";
 
 
-export const title = (text) => ({
+export const title = (textId) => ({
   type: COMPONENT.LAYOUT,
   cssFor: "poc-title",
   width: 24,
@@ -9,7 +9,7 @@ export const title = (text) => ({
     {
       type: COMPONENT.TEXT,
       cssFor: "font-18 base-margin-left",
-      text
+      textId
     }
   ]
 });

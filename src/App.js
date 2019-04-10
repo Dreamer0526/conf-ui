@@ -1,16 +1,18 @@
 import React from "react";
 import { Layout } from 'antd';
+import { connect } from "react-redux";
 import { BrowserRouter, Route, Link } from "react-router-dom";
+
+import findContent from "./localization/findContent";
+import enLocaleData from 'react-intl/locale-data/en';
+import zhLocaleData from 'react-intl/locale-data/zh';
+import { IntlProvider, addLocaleData } from 'react-intl';
 
 import Poc from "./views/poc/Poc";
 import PageRenderer from "./views/page-renderer/PageRenderer";
 
-import * as ACTION from "./metadata/actionTypes";
-
+import * as ACTION from "./constants/actionTypes";
 import { menuField } from "./descriptors/menu";
-
-const { Content, Footer, Sider } = Layout;
-
 const descriptor = [
   {
     ...menuField,
@@ -41,26 +43,44 @@ const descriptor = [
   }
 ];
 
-const App = () => {
-  return (
-    <BrowserRouter>
-      <Layout className="app-layout">
-        <Sider collapsed={true} theme="light" >
-          <PageRenderer descriptor={descriptor} />
-        </Sider>
-        <Layout>
-          <Content>
-            <Route path="/poc" component={Poc} />
-          </Content>
+addLocaleData([...enLocaleData, ...zhLocaleData]);
 
-          <Footer >
-            <span>Powered by <strong>Hercule</strong></span>
-            <span style={{ float: "right" }}>© 2017 All right reserved</span>
-          </Footer>
-        </Layout>
-      </Layout>
-    </BrowserRouter>
-  );
+
+class App extends React.Component {
+  render() {
+    const { locale } = this.props;
+    const messages = findContent(locale);
+
+    return (
+      <BrowserRouter>
+        <IntlProvider locale={locale} messages={messages}>
+
+          <Layout className="app-layout">
+            <Layout.Sider collapsed={true} theme="light" >
+              <PageRenderer descriptor={descriptor} />
+            </Layout.Sider>
+
+            <Layout>
+              <Layout.Content>
+                <Route path="/poc" component={Poc} />
+              </Layout.Content>
+
+              <Layout.Footer >
+                <span>Powered by <strong>Hercule</strong></span>
+                <span style={{ float: "right" }}>© 2017 All right reserved</span>
+              </Layout.Footer>
+            </Layout>
+          </Layout>
+
+        </IntlProvider>
+      </BrowserRouter>
+    );
+  }
 };
 
-export default App;
+
+const mapStateToProps = state => state.setting;
+
+export default connect(
+  mapStateToProps
+)(App);

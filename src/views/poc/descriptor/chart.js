@@ -1,4 +1,4 @@
-import * as COMPONENT from "../../../metadata/componentTypes";
+import * as COMPONENT from "../../../constants/componentTypes";
 
 import { title } from "./title";
 
@@ -90,7 +90,7 @@ export const chart_curr_dist_overview = {
       offset: 1,
       cssFor: "text-left",
       children: [
-        title("本次下发概况")
+        title("chart__title")
       ]
     }, {
       width: 24,

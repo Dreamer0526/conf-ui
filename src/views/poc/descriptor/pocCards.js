@@ -1,22 +1,21 @@
 import { card } from "../../../descriptors/card";
-import * as COMPONENT from "../../../metadata/componentTypes";
+import * as COMPONENT from "../../../constants/componentTypes";
 
 
 export const card_week_totle_leads = card({
   header: [
     {
       type: COMPONENT.ICON,
-      text: "arch"
+      icon: "arch"
     }, {
       type: COMPONENT.TEXT,
-      text: "本周总线索数"
+      textId: "card__header_1"
     }
   ],
   body: [
     {
       type: COMPONENT.TEXT,
-      text: "%{v}",
-      values: ["week_totle_leads"]
+      textId: "card__body_1",
     }
   ],
 });
@@ -25,24 +24,22 @@ export const card_leads_dist_rate = card({
   header: [
     {
       type: COMPONENT.ICON,
-      text: "arch"
+      icon: "arch"
     }, {
       type: COMPONENT.TEXT,
-      text: "线索下发率"
+      textId: "card__header_2"
     }
   ],
   body: [
     {
       type: COMPONENT.TEXT,
-      text: "%{v}",
-      values: ["leads_dist_rate"]
+      textId: "card__body_2"
     }
   ],
   footer: [
     {
       type: COMPONENT.TEXT,
-      text: "共下发条数: %{v}",
-      values: ["total_dist_num"]
+      textId: "card__footer_2"
     }
   ]
 });
@@ -51,17 +48,16 @@ export const card_vip_cust_rate = card({
   header: [
     {
       type: COMPONENT.ICON,
-      text: "arch"
+      icon: "arch"
     }, {
       type: COMPONENT.TEXT,
-      text: "大有客户覆盖率"
+      textId: "card__header_3"
     }
   ],
   body: [
     {
       type: COMPONENT.TEXT,
-      text: "%{v}",
-      values: ["vip_cust_rate"]
+      textId: "card__body_3"
     }
   ]
 });
@@ -70,17 +66,16 @@ export const card_aum_imp_est = card({
   header: [
     {
       type: COMPONENT.ICON,
-      text: "arch"
+      icon: "arch"
     }, {
       type: COMPONENT.TEXT,
-      text: "预估提升AUM"
+      textId: "card__header_4"
     }
   ],
   body: [
     {
       type: COMPONENT.TEXT,
-      text: "%{v}",
-      values: ["aum_imp_est"]
+      textId: "card__body_4"
     }
   ]
 });
