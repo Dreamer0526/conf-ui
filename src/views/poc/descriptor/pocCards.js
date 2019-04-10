@@ -9,13 +9,13 @@ export const card_week_totle_leads = card({
       icon: "arch"
     }, {
       type: COMPONENT.TEXT,
-      textId: "card__header_1"
+      textId: "card.header1"
     }
   ],
   body: [
     {
       type: COMPONENT.TEXT,
-      textId: "card__body_1",
+      textId: "card.body1",
     }
   ],
 });
@@ -27,19 +27,19 @@ export const card_leads_dist_rate = card({
       icon: "arch"
     }, {
       type: COMPONENT.TEXT,
-      textId: "card__header_2"
+      textId: "card.header2"
     }
   ],
   body: [
     {
       type: COMPONENT.TEXT,
-      textId: "card__body_2"
+      textId: "card.body2"
     }
   ],
   footer: [
     {
       type: COMPONENT.TEXT,
-      textId: "card__footer_2"
+      textId: "card.footer2"
     }
   ]
 });
@@ -51,13 +51,13 @@ export const card_vip_cust_rate = card({
       icon: "arch"
     }, {
       type: COMPONENT.TEXT,
-      textId: "card__header_3"
+      textId: "card.header3"
     }
   ],
   body: [
     {
       type: COMPONENT.TEXT,
-      textId: "card__body_3"
+      textId: "card.body3"
     }
   ]
 });
@@ -69,13 +69,13 @@ export const card_aum_imp_est = card({
       icon: "arch"
     }, {
       type: COMPONENT.TEXT,
-      textId: "card__header_4"
+      textId: "card.header4"
     }
   ],
   body: [
     {
       type: COMPONENT.TEXT,
-      textId: "card__body_4"
+      textId: "card.body4"
     }
   ]
 });

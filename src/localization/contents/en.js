@@ -1,20 +1,23 @@
 const content_EN = {
   header: "Distribution Report",
   title: "Leads Distribution Summary",
+  card: {
+    header1: "Total Leads # This Week",
+    header2: "Leads Distribute Rate",
+    header3: "VIP Customer Coverage Rate",
+    header4: "AUM Improvement Estimated",
 
-  card__header_1: "Total Leads # This Week",
-  card__header_2: "Leads Distribute Rate",
-  card__header_3: "VIP Customer Coverage Rate",
-  card__header_4: "AUM Improvement Estimated",
+    body1: "{week_total_leads}",
+    body2: "{leads_dist_rate}",
+    body3: "{vip_cust_rate}",
+    body4: "{aum_imp_est}",
 
-  card__body_1: "{week_total_leads}",
-  card__body_2: "{leads_dist_rate}",
-  card__body_3: "{vip_cust_rate}",
-  card__body_4: "{aum_imp_est}",
+    footer2: "Total Distribution Items: {total_dist_num}",
+  },
 
-  card__footer_2: "Total Distribution Items: {total_dist_num}",
-
-  chart__title: "Distribution Overview"
+  chart: {
+    title: "Distribution Overview"
+  }
 };
 
 export default content_EN;
