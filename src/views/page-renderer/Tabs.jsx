@@ -16,9 +16,8 @@ class Tabs extends React.Component {
     this.setState({ activeTab: key });
   }
 
-  handleClick(event) {
-    const { key } = event;
-    this.setState({ activeTab: key });
+  handleClick(target) {
+    this.setState({ activeTab: target.key });
   }
 
   renderPanel() {

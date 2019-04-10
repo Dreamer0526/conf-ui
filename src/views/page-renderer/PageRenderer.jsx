@@ -7,6 +7,7 @@ import Card from "./Card";
 import Menu from "./Menu";
 import Tabs from "./Tabs";
 import Chart from "./Chart";
+import Dropdown from "./Dropdown";
 
 import * as COMPONENT from "../../constants/componentTypes";
 
@@ -60,6 +61,13 @@ class PageRenderer extends React.Component {
       case COMPONENT.CHART:
         return <Chart {...field} data={this.props.data} />;
 
+      case COMPONENT.DROPDOWN:
+        return (
+          <Dropdown {...field}
+            registerEvents={this.registerEvents.bind(this)}
+          />
+        );
+
       case COMPONENT.LAYOUT:
       default:
         return this.renderLayout(field);
@@ -75,6 +83,7 @@ class PageRenderer extends React.Component {
         <FormattedMessage
           id={textId}
           values={data}
+          defaultMessage={textId}
         />
       </span>
     );
@@ -109,7 +118,7 @@ class PageRenderer extends React.Component {
         result,
         event,
         {
-          value: () => this.props.dispatch({ type: actionType }),
+          value: target => this.props.dispatch({ type: actionType, target }),
           enumerable: true
         }
       );

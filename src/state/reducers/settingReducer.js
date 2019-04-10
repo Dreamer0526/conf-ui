@@ -1,3 +1,4 @@
+import * as ACTION from "../../constants/actionTypes";
 import * as LOCALE from "../../constants/localeTypes";
 import findMessages from "../../localization/findMessages";
 
@@ -10,7 +11,20 @@ const origin = {
 };
 
 const settingReducer = (state = origin, action) => {
-  return state;
+  switch (action.type) {
+    case ACTION.CHANGE_LANGUAGE:
+      const { target } = action;
+      const { key } = target;
+      const locale = key.split("_")[1]
+      return {
+        ...state,
+        locale,
+        messages: findMessages(locale)
+      }
+
+    default:
+      return state;
+  }
 }
 
 export default settingReducer;
