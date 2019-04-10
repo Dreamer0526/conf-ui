@@ -1,7 +1,12 @@
 import * as LOCALE from "../../constants/localeTypes";
+import findMessages from "../../localization/findMessages";
+
+
+const originLocale = LOCALE.EN;
 
 const origin = {
-  locale: LOCALE.EN
+  locale: originLocale,
+  messages: findMessages(originLocale)
 };
 
 const settingReducer = (state = origin, action) => {

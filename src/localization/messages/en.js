@@ -1,4 +1,4 @@
-const content_EN = {
+const messages_EN = {
   header: "Distribution Report",
   title: "Leads Distribution Summary",
   card: {
@@ -16,8 +16,10 @@ const content_EN = {
   },
 
   chart: {
-    title: "Distribution Overview"
+    title: "Distribution Overview",
+    xAxis: ['InPut Leads Total', 'Filter Last Week', 'No disturb for three Months', 'Merge Transfinite Filter', 'Data Consistency Filter',
+      'Normal Transfinite Leads', 'No Maintenance Leads', 'Merge Distribute Number', 'Distribute Customer Number']
   }
 };
 
-export default content_EN;
+export default messages_EN;

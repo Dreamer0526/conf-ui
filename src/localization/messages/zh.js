@@ -1,4 +1,4 @@
-const content_ZH = {
+const messages_ZH = {
   header: "智能大脑下发报告",
   title: "下发线索汇总",
 
@@ -17,8 +17,9 @@ const content_ZH = {
   },
 
   chart: {
-    title: "本次下发概况"
+    title: "本次下发概况",
+    xAxis: ['输入线索总数', '上周联系滤除', '三月免打扰', '合并超限滤除', '数据一致性滤除', '普通超限线索', '无维护人超限线索', '合并下发数', '下发客户数']
   }
 };
 
-export default content_ZH;
+export default messages_ZH;

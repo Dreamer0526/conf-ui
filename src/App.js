@@ -3,7 +3,6 @@ import { Layout } from 'antd';
 import { connect } from "react-redux";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 
-import findContent from "./localization/findContent";
 import enLocaleData from 'react-intl/locale-data/en';
 import zhLocaleData from 'react-intl/locale-data/zh';
 import { IntlProvider, addLocaleData } from 'react-intl';
@@ -48,8 +47,7 @@ addLocaleData([...enLocaleData, ...zhLocaleData]);
 
 class App extends React.Component {
   render() {
-    const { locale } = this.props;
-    const messages = findContent(locale);
+    const { locale, messages } = this.props;
 
     return (
       <BrowserRouter>
