@@ -55,7 +55,10 @@ const option = {
           distance: 10,
         }
       },
-      dataId: "chart.origData"
+      dataId: "chart.origData",
+      itemStyle: {
+        barBorderRadius: [5, 5, 0, 0]
+      }
     }
   ]
 };

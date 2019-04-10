@@ -6,7 +6,6 @@ import ReactEcharts from "echarts-for-react";
 
 
 class Chart extends React.Component {
-
   axisLocalization(chartAxis) {
     const { messages } = this.props;
 
@@ -19,13 +18,21 @@ class Chart extends React.Component {
     });
   }
 
-  dataFillIn(chartSeries) {
+  setColorAndData(chartSeries) {
     return chartSeries.map(series => {
-      const { dataId } = series;
-      if (!dataId) return series;
+      const { dataId, itemStyle = {} } = series;
+      // if (!dataId) return series;
 
+      const { color } = this.props;
       const data = get(this.props.data, dataId, []);
-      return { ...series, data }
+
+      return {
+        ...series, data,
+        itemStyle: {
+          ...itemStyle,
+          color
+        }
+      }
     });
   }
 
@@ -35,7 +42,7 @@ class Chart extends React.Component {
 
     const modifiedXAxis = this.axisLocalization(xAxis);
     const modifiedYAxis = this.axisLocalization(yAxis);
-    const modifiedSeries = this.dataFillIn(series);
+    const modifiedSeries = this.setColorAndData(series);
 
     return {
       ...option,
@@ -58,6 +65,7 @@ class Chart extends React.Component {
 
 
 const mapStateToProps = state => ({
+  color: state.setting.colors["--color-border"],
   messages: state.setting.messages
 });
 

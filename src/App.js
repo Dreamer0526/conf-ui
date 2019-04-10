@@ -46,17 +46,12 @@ addLocaleData([...enLocaleData, ...zhLocaleData]);
 
 
 class App extends React.Component {
-  // componentDidMount() {
-  //   const elem = document.getElementById("app");
-  //   const color = getComputedStyle(elem).getPropertyValue('--color-border')
-  //   console.log(color)
-  // }
 
   render() {
-    const { theme, locale, messages } = this.props;
+    const { locale, messages } = this.props;
 
     return (
-      <div id="app" className={`${theme}`}>
+      <div id="app">
         <BrowserRouter>
           <IntlProvider locale={locale} messages={messages}>
 

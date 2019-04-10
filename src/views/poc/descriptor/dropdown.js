@@ -1,3 +1,4 @@
+import * as THEME from "../../../constants/themeTypes";
 import * as ACTION from "../../../constants/actionTypes";
 import * as COMPONENT from "../../../constants/componentTypes";
 
@@ -25,18 +26,18 @@ export const dropdowm_theme = {
   type: COMPONENT.DROPDOWN,
   width: 3,
   offset: 4,
-  defaultSelectedKey: "default",
+  defaultSelectedKey: THEME.BLUE,
   events: {
     onClick: ACTION.CHANGE_THEME
   },
   options: [
     {
-      key: "default",
-      textId: "default"
+      key: THEME.BLUE,
+      textId: THEME.BLUE
     },
     {
-      key: "red",
-      textId: "red"
+      key: THEME.RED,
+      textId: THEME.RED
     }
   ]
 }
