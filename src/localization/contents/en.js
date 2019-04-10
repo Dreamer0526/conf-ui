@@ -1,6 +1,6 @@
 const content_EN = {
   header: "Distribution Report",
-
+  title: "Leads Distribution Summary",
 
   card__header_1: "Total Leads # This Week",
   card__header_2: "Leads Distribute Rate",

@@ -1,5 +1,6 @@
 const content_ZH = {
   header: "智能大脑下发报告",
+  title: "下发线索汇总",
 
   card__header_1: "本周总线索数",
   card__header_2: "线索下发率",
