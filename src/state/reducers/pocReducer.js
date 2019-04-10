@@ -9,25 +9,8 @@ const origin = {
     aum_imp_est: 13.5,
 
     chart: {
-      total_leads_num: 234144,
-      contact_num: 0,
-      reject_num: 0,
-      merge_filter_num: 201,
-      other_num: 2045,
-      unallocate_fm: 37068,
-      unallocate_org: 32378,
-      dist_merge_leads: 25774,
-      dist_cust: 136678,
-
-      total_leads_num_aux: 0,
-      contact_num_aux: 234144,
-      reject_num_aux: 234144,
-      merge_filter_num_aux: 233943,
-      other_num_aux: 231898,
-      unallocate_fm_aux: 194830,
-      unallocate_org_aux: 162452,
-      dist_merge_leads_aux: 162452,
-      dist_cust_aux: 0,
+      origData: [234144, 0, 0, 201, 2045, 37068, 32378, 25774, 136678],
+      auxData: [0, 234144, 234144, 233943, 231898, 194830, 162452, 162452, 0]
     }
   }
 };

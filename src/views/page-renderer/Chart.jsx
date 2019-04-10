@@ -1,31 +1,47 @@
 import React from "react";
 import { Col } from "antd";
 import get from 'lodash/get';
+import { connect } from "react-redux";
 import ReactEcharts from "echarts-for-react";
 
 
 class Chart extends React.Component {
 
-  getOption() {
-    const { option = {}, data = {} } = this.props;
-    const { series = [] } = option;
+  axisLocalization(chartAxis) {
+    const { messages } = this.props;
 
-    const modifiedSeries = series.map(item => {
-      const { data: dataPathList = [] } = item;
-      /**
-       * Replace path name claimed in descriptor with real data stored in redux
-       */
-      const replacedData = dataPathList.map(path => get(data, path, 0));
+    return chartAxis.map(axis => {
+      const { textId } = axis;
+      if (!textId) return axis;
 
-      return {
-        ...item,
-        data: replacedData
-      };
+      const data = get(messages, textId, []);
+      return { ...axis, data };
     });
+  }
+
+  dataFillIn(chartSeries) {
+    return chartSeries.map(series => {
+      const { dataId } = series;
+      if (!dataId) return series;
+
+      const data = get(this.props.data, dataId, []);
+      return { ...series, data }
+    });
+  }
+
+  getOption() {
+    const { option = {} } = this.props;
+    const { series = [], xAxis = [], yAxis = [] } = option;
+
+    const modifiedXAxis = this.axisLocalization(xAxis);
+    const modifiedYAxis = this.axisLocalization(yAxis);
+    const modifiedSeries = this.dataFillIn(series);
 
     return {
       ...option,
-      series: modifiedSeries
+      xAxis: modifiedXAxis,
+      yAxis: modifiedYAxis,
+      series: modifiedSeries,
     };
   }
 
@@ -41,6 +57,10 @@ class Chart extends React.Component {
 }
 
 
-export default Chart;
+const mapStateToProps = state => ({
+  messages: state.setting.messages
+});
 
-
+export default connect(
+  mapStateToProps
+)(Chart);
