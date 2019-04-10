@@ -1,13 +1,13 @@
 .poc-top-layout {
-  background-color: $color-grey-light;
+  background-color: var(--color-background-light);
   height: 70px;
   line-height: 70px;
   font-size: 20px;
-  color: $color-text-light;
-  padding: 0 $qdpl-space;
+  color: var(--color-text-light);
+  padding: 0 var(--qdpl-space);
 }
 
 .poc-title {
-  margin-top: $half-space;
-  border-left: 3px solid $color-border-blue; 
+  margin-top: var(--half-space);
+  border-left: 3px solid var(--color-border); 
 }

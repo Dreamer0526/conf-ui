@@ -3,8 +3,7 @@ import * as COMPONENT from "../../../constants/componentTypes";
 
 export const dropdown_language = {
   type: COMPONENT.DROPDOWN,
-  width: 5,
-  offset: 7,
+  width: 3,
   title: "LANGUAGE",
   defaultSelectedKey: "lang_en",
   events: {
@@ -20,3 +19,24 @@ export const dropdown_language = {
     }
   ]
 };
+
+
+export const dropdowm_theme = {
+  type: COMPONENT.DROPDOWN,
+  width: 3,
+  offset: 4,
+  defaultSelectedKey: "default",
+  events: {
+    onClick: ACTION.CHANGE_THEME
+  },
+  options: [
+    {
+      key: "default",
+      textId: "default"
+    },
+    {
+      key: "red",
+      textId: "red"
+    }
+  ]
+}

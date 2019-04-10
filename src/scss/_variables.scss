@@ -1,19 +1,8 @@
-// colors
-$color-grey: #F4F7F9;
-$color-grey-light: #FFFFFF;
-
-$color-text: #333333;
-$color-text-light: #808080;
-$color-text-blue: #0886D9;
-
-$color-border-blue: #0269aa;
-
-$color-shadow: #DDE0EE;
-
-
-// spaces
-$base-space: 15px;
-$half-space: 8px;
-$dbl-space: 30px;
-$tpl-space: 45px;
-$qdpl-space: 60px;
+:root {
+  // spaces
+  --base-space: 15px;
+  --half-space: 8px;
+  --dbl-space: 30px;
+  --tpl-space: 45px;
+  --qdpl-space: 60px;
+}

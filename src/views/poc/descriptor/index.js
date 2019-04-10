@@ -1,7 +1,7 @@
 import * as COMPONENT from "../../../constants/componentTypes";
 
 import { card_week_totle_leads, card_leads_dist_rate, card_vip_cust_rate, card_aum_imp_est } from "./pocCards";
-import { dropdown_language } from "./languageDropdown";
+import { dropdown_language, dropdowm_theme } from "./dropdown";
 import { chart_curr_dist_overview } from "./chart";
 import { title } from "./title";
 
@@ -25,6 +25,7 @@ const headerField = {
         }
       ]
     },
+    dropdowm_theme,
     dropdown_language
   ]
 }

@@ -3,21 +3,21 @@
   text-align: center; 
   align-items: baseline;
   
-  padding: $base-space 0;
-  margin: $base-space;
+  padding: var(--base-space 0);
+  margin: var(--base-space);
 
   border-radius: 6px;
-  background-color: $color-grey-light;
-  box-shadow: 0.5px 0.5px 3px $color-shadow, 0.5px -0.5px 3px $color-shadow, -0.5px 0.5px 3px $color-shadow, -0.5px -0.5px 3px $color-shadow;
+  background-color: var(--color-background-light);
+  box-shadow: 0.5px 0.5px 3px var(--color-shadow), 0.5px -0.5px 3px var(--color-shadow), -0.5px 0.5px 3px var(--color-shadow), -0.5px -0.5px 3px var(--color-shadow);
 
   .card-body {
     font-size: 32px;
     line-height: 45px;
-    color: $color-text-blue;
+    color: var(--color-text-strong);
   }
 
   .card-footer {
     font-size: 14px;
-    color: $color-text-light;
+    color: var(--color-text-light);
   }
 }

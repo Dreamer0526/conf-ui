@@ -1,3 +1,13 @@
+#app {
+  &.default {
+    @import "./themes/blue";
+  }
+
+  &.red {
+    @import "./themes/red";
+  }
+}
+
 @import "./variables";
 
 @import "./components/icon";
@@ -11,8 +21,8 @@
 
 body {
   font-size: 14px;
-  color: $color-text;
-  background-color: $color-grey;
+  color: var(--color-text);
+  background-color: var(--color-background);
   font-family: "PingFangSC-Light", 'HelveticaNeue-Light', "Microsoft YaHei UI", "Microsoft YaHei", "sans-serif";
 }
 

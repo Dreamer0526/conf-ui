@@ -46,32 +46,40 @@ addLocaleData([...enLocaleData, ...zhLocaleData]);
 
 
 class App extends React.Component {
+  // componentDidMount() {
+  //   const elem = document.getElementById("app");
+  //   const color = getComputedStyle(elem).getPropertyValue('--color-border')
+  //   console.log(color)
+  // }
+
   render() {
-    const { locale, messages } = this.props;
+    const { theme, locale, messages } = this.props;
 
     return (
-      <BrowserRouter>
-        <IntlProvider locale={locale} messages={messages}>
+      <div id="app" className={`${theme}`}>
+        <BrowserRouter>
+          <IntlProvider locale={locale} messages={messages}>
 
-          <Layout className="app-layout">
-            <Layout.Sider collapsed={true} theme="light" >
-              <PageRenderer descriptor={descriptor} />
-            </Layout.Sider>
+            <Layout className="app-layout">
+              <Layout.Sider collapsed={true} theme="light" >
+                <PageRenderer descriptor={descriptor} />
+              </Layout.Sider>
 
-            <Layout>
-              <Layout.Content>
-                <Route path="/poc" component={Poc} />
-              </Layout.Content>
+              <Layout>
+                <Layout.Content>
+                  <Route path="/poc" component={Poc} />
+                </Layout.Content>
 
-              <Layout.Footer >
-                <span>Powered by <strong>Hercule</strong></span>
-                <span style={{ float: "right" }}>© 2017 All right reserved</span>
-              </Layout.Footer>
+                <Layout.Footer >
+                  <span>Powered by <strong>Hercule</strong></span>
+                  <span style={{ float: "right" }}>© 2017 All right reserved</span>
+                </Layout.Footer>
+              </Layout>
             </Layout>
-          </Layout>
 
-        </IntlProvider>
-      </BrowserRouter>
+          </IntlProvider>
+        </BrowserRouter>
+      </div>
     );
   }
 };
