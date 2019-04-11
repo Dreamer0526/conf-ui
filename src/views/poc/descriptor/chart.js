@@ -66,7 +66,7 @@ const option = {
 
 export const chart_curr_dist_overview = {
   type: COMPONENT.CARD,
-  width: 22,
+  width: 23,
   children: [
     {
       width: 6,

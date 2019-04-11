@@ -41,7 +41,7 @@ export default [
     offset: 2,
     children: [
       titleField,
-      card_week_totle_leads,
+      { ...card_week_totle_leads, offset: 0 },
       card_leads_dist_rate,
       card_vip_cust_rate,
       card_aum_imp_est,
