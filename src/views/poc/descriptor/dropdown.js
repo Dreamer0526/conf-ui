@@ -1,22 +1,23 @@
 import * as THEME from "../../../constants/themeTypes";
 import * as ACTION from "../../../constants/actionTypes";
+import * as LOCALE from "../../../constants/localeTypes";
 import * as COMPONENT from "../../../constants/componentTypes";
 
 export const dropdown_language = {
   type: COMPONENT.DROPDOWN,
   width: 3,
   title: "LANGUAGE",
-  defaultSelectedKey: "lang_en",
+  defaultSelectedKey: LOCALE.ZH,
   events: {
     onClick: ACTION.CHANGE_LANGUAGE
   },
   options: [
     {
       textId: "English",
-      key: "lang_en",
+      key: LOCALE.EN,
     }, {
       textId: "中文",
-      key: "lang_zh",
+      key: LOCALE.ZH,
     }
   ]
 };

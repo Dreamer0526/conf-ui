@@ -20,11 +20,10 @@ const settingReducer = (state = origin, action) => {
 
   switch (type) {
     case ACTION.CHANGE_LANGUAGE:
-      const locale = key.split("_")[1]
       return {
         ...state,
-        locale,
-        messages: findMessages(locale)
+        locale: key,
+        messages: findMessages(key)
       }
 
     case ACTION.CHANGE_THEME:
