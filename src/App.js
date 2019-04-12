@@ -7,14 +7,17 @@ import enLocaleData from 'react-intl/locale-data/en';
 import zhLocaleData from 'react-intl/locale-data/zh';
 import { IntlProvider, addLocaleData } from 'react-intl';
 
-import Poc from "./views/poc/Poc";
-import PageRenderer from "./views/page-renderer/PageRenderer";
+import Poc from "./pages/poc/Poc";
+import PageRenderer from "./utils/renderer/PageRenderer";
 
 import * as ACTION from "./constants/actionTypes";
-import { menuField } from "./descriptors/menu";
+import * as COMPONENT from "./constants/componentTypes";
+
+
 const descriptor = [
   {
-    ...menuField,
+    type: COMPONENT.MENU,
+    mode: "vertical",
     structure: [{
       title: <span className="icon wmp" />,
       options: [

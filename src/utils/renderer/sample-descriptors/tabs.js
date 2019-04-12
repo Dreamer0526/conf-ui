@@ -1,4 +1,4 @@
-import { TABS } from "../constants/componentTypes";
+import { TABS } from "../../../constants/componentTypes";
 
 export const tabsField = {
   type: TABS,

@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import PageRenderer from "../page-renderer/PageRenderer";
+import PageRenderer from "../../utils/renderer/PageRenderer";
 
 import descriptor from "./descriptor";
 
