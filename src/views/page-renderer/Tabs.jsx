@@ -1,56 +1,25 @@
 import React from "react";
-import { Menu, Col } from "antd";
+import { Tabs as AntdTabs, Col } from "antd";
+
+const TabPane = AntdTabs.TabPane;
 
 
 class Tabs extends React.Component {
-  state = {
-    activeTab: "",
-  }
-
-  componentDidMount() {
-    // set default selected
-    const { tabs = [] } = this.props;
-    if (!tabs.length) return
-
-    const { key } = tabs[0];
-    this.setState({ activeTab: key });
-  }
-
-  handleClick(target) {
-    this.setState({ activeTab: target.key });
-  }
-
-  renderPanel() {
-    const { activeTab } = this.state;
-    const { tabs = [], innerWidth = 24, innerOffset = 0 } = this.props;
-
-    const { children = [] } = tabs.find(item => item.key === activeTab) || {};
-
-    return (
-      <Col md={innerWidth} offset={innerOffset}>
-        {children.map(child => this.props.renderComponent(child))}
-      </Col>
-    );
-  }
 
   render() {
-    const { activeTab } = this.state;
-    const { width = 24, offset = 0, tabs = [], mode = "horizontal" } = this.props;
+    const { width = 24, offset = 0, tabs = [] } = this.props;
 
     return (
       <Col md={width} offset={offset}>
-        <Menu
-          defaultSelectedKeys={[activeTab]}
-          onClick={this.handleClick.bind(this)}
-          selectedKeys={[activeTab]}
-          mode={mode}
-        >
-          {tabs.map(
-            ({ key, title }) => <Menu.Item key={key}> {title} </Menu.Item>
-          )}
-        </Menu>
-
-        {this.renderPanel()}
+        <AntdTabs>
+          {
+            tabs.map(({ title, key, children = [] }) => (
+              <TabPane tab={title} key={key}>
+                {children.map(child => this.props.renderComponent(child))}
+              </TabPane>
+            ))
+          }
+        </AntdTabs>
       </Col>
     );
   }

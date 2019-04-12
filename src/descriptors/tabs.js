@@ -4,8 +4,6 @@ export const tabsField = {
   type: TABS,
   width: 24,
   offset: 0,
-  innerWidth: 20,
-  innerOffset: 2,
   tabs: [
     {
       key: "home",
