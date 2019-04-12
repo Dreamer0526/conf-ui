@@ -32,6 +32,35 @@ const headerField = {
 
 const titleField = title("title");
 
+const tableField = {
+  type: COMPONENT.CARD,
+  width: 23,
+  children: [
+    {
+      type: COMPONENT.TABLE,
+      columns: [{
+        title: "",
+        dataIndex: "firstCol",
+        key: "firstCol"
+      },
+      {
+        title: "私人银行",
+        dataIndex: "personalBank",
+        key: "personalBank",
+      }, {
+        title: "钻石",
+        dataIndex: "diamond",
+        key: "diamond"
+      }, {
+        title: "信用卡",
+        dataIndex: "creditCard",
+        key: "creditCard"
+      }],
+      data: []
+    }
+  ]
+}
+
 export default [
   headerField,
   {
@@ -45,7 +74,8 @@ export default [
       card_leads_dist_rate,
       card_vip_cust_rate,
       card_aum_imp_est,
-      chart_curr_dist_overview
+      chart_curr_dist_overview,
+      tableField
     ]
   }
 ];

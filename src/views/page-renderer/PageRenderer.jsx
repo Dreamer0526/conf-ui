@@ -7,6 +7,7 @@ import Card from "./Card";
 import Menu from "./Menu";
 import Tabs from "./Tabs";
 import Chart from "./Chart";
+import Table from "./Table";
 import Dropdown from "./Dropdown";
 
 import * as COMPONENT from "../../constants/componentTypes";
@@ -60,6 +61,9 @@ class PageRenderer extends React.Component {
 
       case COMPONENT.CHART:
         return <Chart {...field} data={this.props.data} />;
+
+      case COMPONENT.TABLE:
+        return <Table {...field} data={this.props.data} />
 
       case COMPONENT.DROPDOWN:
         return (

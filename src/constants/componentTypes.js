@@ -8,4 +8,5 @@ export const CARD = "card";
 export const MENU = "menu";
 export const TABS = "tabs";
 export const DROPDOWN = "dropdown";
+export const TABLE = "table";
 export const CHART = "chart";
