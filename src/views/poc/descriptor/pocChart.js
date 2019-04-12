@@ -1,6 +1,5 @@
 import * as COMPONENT from "../../../constants/componentTypes";
-
-import { title } from "./title";
+import { title } from "./layouts";
 
 
 const option = {
@@ -65,8 +64,9 @@ const option = {
 
 
 export const chart_curr_dist_overview = {
-  type: COMPONENT.CARD,
+  type: COMPONENT.LAYOUT,
   width: 23,
+  cssFor: "poc-card",
   children: [
     {
       width: 6,

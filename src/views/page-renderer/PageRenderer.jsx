@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { Row, Col, Button } from "antd";
 import { FormattedMessage } from 'react-intl';
 
-import Card from "./Card";
 import Menu from "./Menu";
 import Tabs from "./Tabs";
 import Chart from "./Chart";
@@ -35,14 +34,6 @@ class PageRenderer extends React.Component {
 
       case COMPONENT.ICON:
         return this.renderIcon(field);
-
-      case COMPONENT.CARD:
-        return (
-          <Card {...field}
-            registerEvents={this.registerEvents.bind(this)}
-            renderComponent={this.renderComponent.bind(this)}
-          />
-        );
 
       case COMPONENT.MENU:
         return (

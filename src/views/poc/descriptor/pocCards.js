@@ -1,4 +1,4 @@
-import { card } from "../../../descriptors/card";
+import { card } from "./layouts";
 import * as COMPONENT from "../../../constants/componentTypes";
 
 
