@@ -1,25 +1,48 @@
-.icon {
-  display: inline-block;
-  height: 20px;
-  width: 14px;
-  background: no-repeat center center;
-  background-size: contain;
-  vertical-align: middle;
-  margin-right: 5px;
+@for $i from 1 through 5 {
+  .icon-#{$i}x {
+    height: #{14 + $i*2}px;
+    width:  #{14 + $i*2}px;
+      
+    display: inline-block;
+    background: no-repeat center center;
+    background-size: contain;
+    vertical-align: middle;
+    margin-right: 5px;
 
-  &.arch {
-    background-image: url("../static/icons/arch.png");
-  }
+    &.users {
+      background-image: url("../static/icons/icon_users.png");
+    }
 
-  &.cycle {
-    background-image: url("../static/icons/cycle.png");
-  }
+    &.cases {
+      background-image: url("../static/icons/icon_cases.png");
+    }
 
-  &.scv {
-    background-image: url("../static/icons/scv.png");
-  }
+    &.bran {
+      background-image: url("../static/icons/icon_bran.png");
+    }
 
-  &.wmp {
-    background-image: url("../static/icons/wmp.png");
+    &.succ {
+      background-image: url("../static/icons/icon_succ.png");
+    }
+
+    &.exec {
+      background-image: url("../static/icons/icon_exec.png");
+    }
+
+    &.arch {
+      background-image: url("../static/icons/icon_arch.png");
+    }
+
+    &.cycle {
+      background-image: url("../static/icons/icon_cycle.png");
+    }
+
+    &.scv {
+      background-image: url("../static/icons/icon_scv.png");
+    }
+
+    &.wmp {
+      background-image: url("../static/icons/icon_wmp.png");    
+    }
   }
 }

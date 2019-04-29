@@ -1,9 +1,9 @@
 import * as COMPONENT from "../../../constants/componentTypes";
 
-import { card_week_totle_leads, card_leads_dist_rate, card_vip_cust_rate, card_aum_imp_est } from "./pocCards";
-import { dropdown_language, dropdowm_theme } from "./dropdown";
-import { chart_curr_dist_overview } from "./pocChart";
-import { title } from "./layouts";
+import { card_week_totle_leads, card_leads_dist_rate, card_vip_cust_rate, card_aum_imp_est } from "./_pocCards";
+import { dropdown_language, dropdowm_theme } from "./_dropdown";
+import { chart_curr_dist_overview } from "./_pocChart";
+import { title } from "./_layouts";
 
 const headerField = {
   type: COMPONENT.LAYOUT,
@@ -21,7 +21,7 @@ const headerField = {
         },
         {
           type: COMPONENT.TEXT,
-          textId: "header"
+          textId: "poc.header"
         }
       ]
     },
@@ -30,7 +30,7 @@ const headerField = {
   ]
 }
 
-const titleField = title("title");
+const titleField = title("poc.title");
 
 const tableField = {
   type: COMPONENT.LAYOUT,

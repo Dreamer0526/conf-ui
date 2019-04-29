@@ -1,5 +1,5 @@
 #app {
-  --color-background: #F4F7F9;
+  --color-background: #F0F2F5;
   --color-background-light: #FFFFFF;
 
   --color-text: #333333;
@@ -17,6 +17,7 @@
 @import "./components/chart";
 @import "./components/layout";
 @import "./components/text";
+@import "./components/tabs";
 
 @import "./pages/poc";
 
@@ -35,4 +36,8 @@ body {
 
 .app-layout {
   min-height: 100vh;
+}
+
+.app-header {
+  background-color: var(--color-background);  
 }

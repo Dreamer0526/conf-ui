@@ -1,4 +1,4 @@
-import { DROPDOWN } from "../../../constants/componentTypes";
+import { DROPDOWN } from "../../constants/componentTypes";
 import { TEST } from "../constants/actionTypes";
 
 export const dropdown_language = {

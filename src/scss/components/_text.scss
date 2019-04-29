@@ -15,3 +15,8 @@
 .text-center {
   text-align: center;
 }
+
+.title {
+  margin-top: var(--half-space);
+  border-left: 3px solid var(--color-border); 
+}

@@ -1,7 +1,8 @@
 import React from "react";
+import get from 'lodash/get';
 import { connect } from "react-redux";
-import { Row, Col, Button } from "antd";
 import { FormattedMessage } from 'react-intl';
+import { Row, Col, Button, Badge } from "antd";
 
 import Menu from "./Menu";
 import Tabs from "./Tabs";
@@ -34,6 +35,9 @@ class PageRenderer extends React.Component {
 
       case COMPONENT.ICON:
         return this.renderIcon(field);
+
+      case COMPONENT.IMAGE:
+        return this.renderImage(field);
 
       case COMPONENT.MENU:
         return (
@@ -90,10 +94,18 @@ class PageRenderer extends React.Component {
     );
   }
 
-  renderIcon({ icon = "", cssFor = "" }) {
-    return (
-      <span className={`icon ${icon} ${cssFor}`} />
+  renderIcon({ icon = "", size = 1, cssFor = "", badge = {} }) {
+    const Icon = (
+      <span className={`icon-${size}x ${icon} ${cssFor}`} />
     );
+
+    return this.withBadge(Icon, badge);
+  }
+
+  renderImage({ src = "", width = "50px" }) {
+    return (
+      <img src={src} width={width} alt="" />
+    )
   }
 
   renderLayout({ width = 24, offset = 0, children = [], cssFor = "" }) {
@@ -119,6 +131,16 @@ class PageRenderer extends React.Component {
       );
     }
     return result;
+  }
+
+
+  withBadge(WrappedComponent, badge) {
+    const { dataId = "" } = badge;
+    const count = get(this.props.data, dataId, 0);
+
+    return (
+      <Badge count={count}> {WrappedComponent} </Badge>
+    );
   }
 
 }

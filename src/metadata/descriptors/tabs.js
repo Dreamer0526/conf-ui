@@ -1,4 +1,4 @@
-import { TABS } from "../../../constants/componentTypes";
+import { ICON, TABS } from "../../constants/componentTypes";
 
 export const tabsField = {
   type: TABS,
@@ -7,14 +7,17 @@ export const tabsField = {
   tabs: [
     {
       key: "home",
-      title: "home",
+      title: "home", // could be a string or a renderer-field
       children: [
         // Array of fields
       ]
     },
     {
       key: "profile",
-      title: "profile",
+      title: {
+        type: ICON,
+        icon: "users"
+      },
       children: [
         // Array of fields
       ]

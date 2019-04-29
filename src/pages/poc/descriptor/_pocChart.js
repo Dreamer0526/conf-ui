@@ -1,5 +1,5 @@
 import * as COMPONENT from "../../../constants/componentTypes";
-import { title } from "./layouts";
+import { title } from "./_layouts";
 
 
 const option = {
@@ -20,7 +20,7 @@ const option = {
       axisTick: {
         show: false
       },
-      textId: "chart.xAxis"
+      textId: "poc.chart.xAxis"
     }
 
   ],
@@ -73,7 +73,7 @@ export const chart_curr_dist_overview = {
       offset: 1,
       cssFor: "text-left",
       children: [
-        title("chart.title")
+        title("poc.chart.title")
       ]
     }, {
       width: 24,
