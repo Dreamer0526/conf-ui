@@ -4,9 +4,9 @@ const blueScheme = {
 
   "--color-text": "#333333",
   "--color-text-light": "#808080",
-  "--color-text-emphasis": "#0886D9",
+  "--color-text-emphasis": "#0082F0",
 
-  "--color-border": "#0269aa",
+  "--color-border": "#	0082F0",
 
   "--color-shadow": "#DDE0EE"
 };

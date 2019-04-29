@@ -1,4 +1,4 @@
-import { ICON } from "../../constants/componentTypes";
+import { ICON } from "../../../constants/componentTypes";
 
 export const icon = {
   type: ICON,

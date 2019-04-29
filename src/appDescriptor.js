@@ -33,6 +33,7 @@ export const header = [{
   type: COMPONENT.LAYOUT,
   children: [{
     type: COMPONENT.TEXT,
+    cssFor: "font-18",
     textId: "feedback.header"
   }, {
     type: COMPONENT.TEXT,

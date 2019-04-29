@@ -1,21 +1,6 @@
+import { title, tabTitle } from "../../../fields/texts";
+
 import * as COMPONENT from "../../../constants/componentTypes";
-
-
-const titleField = (icon, dataId, textId) => ({
-  type: COMPONENT.LAYOUT,
-  children: [{
-    type: COMPONENT.ICON,
-    icon,
-    size: 3,
-    badge: {
-      dataId
-    }
-  }, {
-    type: COMPONENT.TEXT,
-    cssFor: "half-margin-left",
-    textId
-  }]
-});
 
 
 const feedbackTabs = {
@@ -24,21 +9,18 @@ const feedbackTabs = {
   offset: 1,
   tabs: [{
     key: "userCases",
-    title: titleField("cases", "userCases.msgCount", "feedback.userCases.title"),
-    children: [{
-      type: COMPONENT.TEXT,
-      textId: "cases"
-    }]
+    title: tabTitle("cases", "userCases.msgCount", "feedback.userCases.title"),
+    children: [title("lalal")]
   }, {
     key: "branches",
-    title: titleField("bran", "branches.msgCount", "feedback.branches.title"),
+    title: tabTitle("bran", "branches.msgCount", "feedback.branches.title"),
     children: [{
       type: COMPONENT.TEXT,
       textId: "branch"
     }]
   }, {
     key: "custGroups",
-    title: titleField("users", "custGroups.msgCount", "feedback.custGroups.title"),
+    title: tabTitle("users", "custGroups.msgCount", "feedback.custGroups.title"),
     children: [{
       type: COMPONENT.TEXT,
       textId: "group"
