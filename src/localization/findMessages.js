@@ -1,24 +1,16 @@
 import squish from "object-squish";
 
-import en from "./messages/en";
-import zh from "./messages/zh";
-import * as LOCALE from "../constants/localeTypes";
-
 
 function findMessages(locale) {
-  let sourceMessages;
+  const messageFolderPath = `./messages/${locale}`;
 
-  switch (locale) {
-    case LOCALE.EN:
-      sourceMessages = en;
-      break
+  const poc = require(`${messageFolderPath}/poc`).default;
+  const feedback = require(`${messageFolderPath}/feedback`).default;
 
-    case LOCALE.ZH:
-    default:
-      sourceMessages = zh;
-  }
-
-  return squish(sourceMessages);
+  return squish({
+    poc,
+    feedback
+  });
 }
 
 export default findMessages;
