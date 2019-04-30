@@ -1,11 +1,12 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import { Menu as AntdMenu } from "antd";
 
 const { Item } = AntdMenu;
 class Menu extends React.Component {
 
   render() {
-    const { options = [], mode = "vertical" } = this.props;
+    const { options, mode } = this.props;
 
     return (
       <AntdMenu mode={mode} theme="dark">
@@ -21,5 +22,15 @@ class Menu extends React.Component {
   }
 }
 
+
+Menu.propTypes = {
+  options: PropTypes.array,
+  mode: PropTypes.string
+}
+
+Menu.defaultProps = {
+  options: [],
+  mode: "vertical"
+}
 
 export default Menu;

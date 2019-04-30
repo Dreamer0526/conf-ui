@@ -110,7 +110,7 @@ class PageRenderer extends React.Component {
 
   renderLayout({ width = 24, offset = 0, children = [], cssFor = "" }) {
     return (
-      <Col md={width} offset={offset} className={cssFor}>
+      <Col xs={width} offset={offset} className={cssFor}>
         {children.map(child => this.renderComponent(child))}
       </Col>
     );

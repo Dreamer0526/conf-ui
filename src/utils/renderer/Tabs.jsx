@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import { Tabs as AntdTabs, Col } from "antd";
 
 const { TabPane } = AntdTabs;
@@ -15,10 +16,10 @@ class Tabs extends React.Component {
   }
 
   render() {
-    const { width = 24, offset = 0, tabs = [] } = this.props;
+    const { width, offset, tabs } = this.props;
 
     return (
-      <Col md={width} offset={offset} className="tabs-container">
+      <Col xs={width} offset={offset} className="tabs-container">
         <AntdTabs type="card">
           {
             tabs.map(({ title, key, children = [] }) => (
@@ -35,5 +36,17 @@ class Tabs extends React.Component {
   }
 }
 
+
+Tabs.propTypes = {
+  tabs: PropTypes.array,
+  width: PropTypes.number,
+  offset: PropTypes.number
+}
+
+Tabs.defaultProps = {
+  tabs: [],
+  width: 22,
+  offset: 1
+}
 
 export default Tabs;

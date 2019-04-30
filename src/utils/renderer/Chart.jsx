@@ -56,7 +56,7 @@ class Chart extends React.Component {
     const { width = 24, offset = 0, notMerge = true } = this.props;
 
     return (
-      <Col md={width} offset={offset} className="renderer-chart">
+      <Col xs={width} offset={offset} className="renderer-chart">
         <ReactEcharts option={this.getOption()} notMerge={notMerge} className="chart" />
       </Col>
     );

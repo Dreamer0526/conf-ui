@@ -32,11 +32,27 @@ export const menu = [logoField, menuField];
 export const header = [{
   type: COMPONENT.LAYOUT,
   children: [{
-    type: COMPONENT.TEXT,
-    cssFor: "font-18",
-    textId: "feedback.header"
+    type: COMPONENT.LAYOUT,
+    width: 12,
+    children: [{
+      type: COMPONENT.TEXT,
+      cssFor: "font-18",
+      textId: "feedback.header"
+    }]
   }, {
-    type: COMPONENT.TEXT,
-    textId: "feedback.userName"
+    type: COMPONENT.DROPDOWN,
+    width: 4,
+    offset: 8,
+    textId: "feedback.userName",
+    options: [
+      {
+        textId: "中文",
+        key: "zh",
+        selected: true
+      }, {
+        textId: "English",
+        key: "en",
+      }
+    ]
   }]
 }];

@@ -5,8 +5,6 @@ import * as COMPONENT from "../../../constants/componentTypes";
 
 const feedbackTabs = {
   type: COMPONENT.TABS,
-  width: 22,
-  offset: 1,
   tabs: [{
     key: "userCases",
     title: tabTitle("cases", "userCases.msgCount", "feedback.userCases.title"),
