@@ -6,10 +6,12 @@ function findMessages(locale) {
 
   const poc = require(`${messageFolderPath}/poc`).default;
   const feedback = require(`${messageFolderPath}/feedback`).default;
+  const buttonLabels = require(`${messageFolderPath}/buttonLabels`).default;
 
   return squish({
     poc,
-    feedback
+    feedback,
+    buttonLabels
   });
 }
 

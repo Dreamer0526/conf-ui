@@ -1,16 +1,17 @@
 import * as COMPONENT from "../constants/componentTypes";
 
 
-export const title = (textId) => ({
+export const title = (textId, descField = {}) => ({
   type: COMPONENT.LAYOUT,
   cssFor: "text-title",
   width: 24,
   children: [
     {
       type: COMPONENT.TEXT,
-      cssFor: "font-18 base-margin-left",
+      cssFor: "font-18 base-margin",
       textId
-    }
+    },
+    descField
   ]
 });
 

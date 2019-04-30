@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import * as ACTION from "./constants/actionTypes";
 import * as COMPONENT from "./constants/componentTypes";
 
 const logoSrc = require("./static/images/logo.png");
@@ -44,6 +45,9 @@ export const header = [{
     width: 4,
     offset: 8,
     textId: "feedback.userName",
+    events: {
+      onClick: ACTION.CHANGE_LANGUAGE
+    },
     options: [
       {
         textId: "中文",

@@ -26,11 +26,11 @@ class Menu extends React.Component {
 Menu.propTypes = {
   options: PropTypes.array,
   mode: PropTypes.string
-}
+};
 
 Menu.defaultProps = {
   options: [],
   mode: "vertical"
-}
+};
 
 export default Menu;

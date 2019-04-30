@@ -41,12 +41,12 @@ Tabs.propTypes = {
   tabs: PropTypes.array,
   width: PropTypes.number,
   offset: PropTypes.number
-}
+};
 
 Tabs.defaultProps = {
   tabs: [],
   width: 22,
   offset: 1
-}
+};
 
 export default Tabs;

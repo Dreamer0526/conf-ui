@@ -9,6 +9,7 @@ import Tabs from "./Tabs";
 import Chart from "./Chart";
 import Table from "./Table";
 import Dropdown from "./Dropdown";
+import ButtonRadio from "./ButtonRadio";
 
 import * as COMPONENT from "../../constants/componentTypes";
 
@@ -53,6 +54,11 @@ class PageRenderer extends React.Component {
             renderComponent={this.renderComponent.bind(this)}
           />
         );
+
+      case COMPONENT.BUTTON_RADIO:
+        return <ButtonRadio {...field}
+          registerEvents={this.registerEvents.bind(this)}
+        />
 
       case COMPONENT.CHART:
         return <Chart {...field} data={this.props.data} />;

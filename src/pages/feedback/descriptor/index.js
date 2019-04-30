@@ -1,6 +1,6 @@
-import { title, tabTitle } from "../../../fields/texts";
-
 import * as COMPONENT from "../../../constants/componentTypes";
+import { tabTitle } from "../../../fields/texts";
+import userCasesDesc from "./userCases";
 
 
 const feedbackTabs = {
@@ -8,7 +8,7 @@ const feedbackTabs = {
   tabs: [{
     key: "userCases",
     title: tabTitle("cases", "userCases.msgCount", "feedback.userCases.title"),
-    children: [title("lalal")]
+    children: userCasesDesc
   }, {
     key: "branches",
     title: tabTitle("bran", "branches.msgCount", "feedback.branches.title"),
@@ -23,8 +23,7 @@ const feedbackTabs = {
       type: COMPONENT.TEXT,
       textId: "group"
     }]
-  },
-  ]
+  }]
 };
 
 export default [feedbackTabs];

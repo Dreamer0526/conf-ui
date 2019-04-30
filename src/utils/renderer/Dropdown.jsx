@@ -79,7 +79,7 @@ Dropdown.propTypes = {
   offset: PropTypes.number,
   width: PropTypes.number,
   events: PropTypes.object
-}
+};
 
 Dropdown.defaultProps = {
   options: [],
@@ -87,6 +87,6 @@ Dropdown.defaultProps = {
   offset: 0,
   width: 6,
   events: {}
-}
+};
 
 export default Dropdown;
