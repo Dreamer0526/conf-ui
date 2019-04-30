@@ -1,11 +1,13 @@
 .tabs-container > .ant-tabs-card > .ant-tabs-content {
   height: 120px;
   margin-top: -16px;
+  height: calc(100vh - 135px);
 }
 
 .tabs-container > .ant-tabs-card > .ant-tabs-content > .ant-tabs-tabpane {
   background: #fff;
   padding: 16px;
+  height: 100%
 }
 
 .tabs-container > .ant-tabs-card > .ant-tabs-bar {

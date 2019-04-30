@@ -96,9 +96,14 @@ class PageRenderer extends React.Component {
     );
   }
 
-  renderButton({ textId, events = {}, cssFor = "" }) {
+  renderButton({ textId, events = {}, cssFor = "", name = "" }) {
     return (
-      <Button className={cssFor} {...this.registerEvents(events)}> {textId} </Button>
+      <Button className={cssFor} {...this.registerEvents(events)} name={name}>
+        <FormattedMessage
+          id={textId}
+          defaultMessage={textId}
+        />
+      </Button>
     );
   }
 
@@ -129,15 +134,27 @@ class PageRenderer extends React.Component {
     const result = {};
 
     for (let [event, actionType] of Object.entries(events)) {
-      Object.defineProperty(
-        result,
-        event,
-        {
-          value: target => this.props.dispatch({ type: actionType, target }),
-          enumerable: true
-        }
-      );
+
+      const callback = e => {
+        /**
+         * @desc get targetId for different type of elements
+         */
+        const targetId = get(e, "key")  // dropdown item
+          || get(e, "target.value")     // buttonRadio
+          || (e.currentTarget && e.currentTarget.getAttribute("name")) // button
+
+        console.log(targetId)
+
+        const action = targetId ? { type: actionType, targetId } : { type: actionType };
+        this.props.dispatch(action);
+      };
+
+      Object.defineProperty(result, event, {
+        value: callback,
+        enumerable: true
+      });
     }
+
     return result;
   }
 

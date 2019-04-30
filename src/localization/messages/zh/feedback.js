@@ -3,7 +3,8 @@ export default {
   userName: "Caskal Yang",
   userCases: {
     title: "用例",
-    chartTitle: "所有用例执行参照对比"
+    chartTitle: "所有用例执行参照对比",
+    insightTitle: "反馈模型智能洞见",
   },
   branches: {
     title: "分行"

@@ -11,7 +11,7 @@ class ButtonRadio extends React.Component {
 
     return (
       <Col xs={width} offset={offset} className={cssFor}>
-        <Radio.Group size="small" defaultValue={defaultSelectedKey} {...this.props.registerEvents(events)} >
+        <Radio.Group defaultValue={defaultSelectedKey} {...this.props.registerEvents(events)} >
           {
             options.map(({ key, textId }) => (
               <Radio.Button value={key} key={`renderer-btn-radio-${key}`}>

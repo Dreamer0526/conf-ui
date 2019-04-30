@@ -23,7 +23,9 @@ class Tabs extends React.Component {
         <AntdTabs type="card">
           {
             tabs.map(({ title, key, children = [] }) => (
-              <TabPane key={key}
+              <TabPane
+                className="dbl-padding-left dbl-padding-right"
+                key={key}
                 tab={this.renderTitle(title)}
               >
                 {children.map(child => this.props.renderComponent(child))}

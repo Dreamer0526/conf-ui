@@ -6,6 +6,7 @@
   --color-text-light: #808080;
   --color-text-emphasis: #0082F0;
 
+  --color-border-grey: #E0E0E0;
   --color-border: #0082F0;
 
   --color-shadow: #DDE0EE;
@@ -15,9 +16,9 @@
 
 @import "./components/icon";
 @import "./components/chart";
-@import "./components/layout";
 @import "./components/text";
 @import "./components/tabs";
+@import "./components/typography";
 
 @import "./pages/poc";
 

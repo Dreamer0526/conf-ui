@@ -3,7 +3,8 @@ export default {
   userName: "Caskal Yang",
   userCases: {
     title: "User Cases",
-    chartTitle: "Use cases perform reference comparisons"
+    chartTitle: "Use cases performance",
+    insightTitle: "Intelligent insights",
   },
   branches: {
     title: "Branch Banks"

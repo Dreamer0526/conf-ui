@@ -53,10 +53,10 @@ class Chart extends React.Component {
   }
 
   render() {
-    const { width = 24, offset = 0, notMerge = true } = this.props;
+    const { width = 24, offset = 0, notMerge = true, cssFor } = this.props;
 
     return (
-      <Col xs={width} offset={offset} className="renderer-chart">
+      <Col xs={width} offset={offset} className={`renderer-chart ${cssFor}`}>
         <ReactEcharts option={this.getOption()} notMerge={notMerge} className="chart" />
       </Col>
     );
