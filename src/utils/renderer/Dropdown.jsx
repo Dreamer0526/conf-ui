@@ -20,24 +20,29 @@ class Dropdown extends React.Component {
   }
 
   renderOptions() {
-    const { options, events } = this.props;
+    const { options, events, width, offset, cssFor } = this.props;
 
     return (
-      <Menu {...this.props.registerEvents(events)}>
-        {options.map(option => {
-          const { key, textId } = option;
+      /**
+       * @todo cssFor does not work for unknown reason
+       */
+      <Col xs={width} offset={offset} className={cssFor}>
+        <Menu {...this.props.registerEvents(events)}>
+          {options.map(option => {
+            const { key, textId } = option;
 
-          return (
-            <Menu.Item key={key} onClick={this.handleSelect.bind(this)}>
-              <FormattedMessage
-                id={textId}
-                defaultMessage={textId}
-              />
-            </Menu.Item>
-          );
-        })}
-      </Menu>
-    )
+            return (
+              <Menu.Item key={key} onClick={this.handleSelect.bind(this)}>
+                <FormattedMessage
+                  id={textId}
+                  defaultMessage={textId}
+                />
+              </Menu.Item>
+            );
+          })}
+        </Menu>
+      </Col>
+    );
   }
 
   findSelectedLabel() {
@@ -78,6 +83,7 @@ Dropdown.propTypes = {
   textId: PropTypes.string,
   offset: PropTypes.number,
   width: PropTypes.number,
+  cssFor: PropTypes.string,
   events: PropTypes.object
 };
 
@@ -86,6 +92,7 @@ Dropdown.defaultProps = {
   textId: "",
   offset: 0,
   width: 6,
+  cssFor: "",
   events: {}
 };
 

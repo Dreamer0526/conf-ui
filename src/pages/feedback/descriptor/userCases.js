@@ -4,6 +4,8 @@ import { title } from "../../../fields/texts";
 const dateField = { type: COMPONENT.TEXT, textId: "2019/03/04 - 2019/03/10" };
 const radioField = {
   type: COMPONENT.BUTTON_RADIO,
+  width: 24,
+  cssFor: "text-right",
   events: {
     onChange: "button radio action"
   },
@@ -20,7 +22,7 @@ const radioField = {
 
 const userCasesDescriptor = [
   title("feedback.userCases.chartTitle", dateField),
-  radioField,
+  radioField
 ];
 
 export default userCasesDescriptor;

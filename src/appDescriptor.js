@@ -42,8 +42,8 @@ export const header = [{
     }]
   }, {
     type: COMPONENT.DROPDOWN,
-    width: 4,
-    offset: 8,
+    width: 12,
+    cssFor: "text-right",
     textId: "feedback.userName",
     events: {
       onClick: ACTION.CHANGE_LANGUAGE

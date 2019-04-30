@@ -56,9 +56,11 @@ class PageRenderer extends React.Component {
         );
 
       case COMPONENT.BUTTON_RADIO:
-        return <ButtonRadio {...field}
-          registerEvents={this.registerEvents.bind(this)}
-        />
+        return (
+          <ButtonRadio {...field}
+            registerEvents={this.registerEvents.bind(this)}
+          />
+        );
 
       case COMPONENT.CHART:
         return <Chart {...field} data={this.props.data} />;
