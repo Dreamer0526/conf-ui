@@ -1,4 +1,6 @@
 import * as COMPONENT from "../../../constants/componentTypes";
+
+import { insightCard } from "../../../fields/cards";
 import { title } from "../../../fields/texts";
 
 const dateField = { type: COMPONENT.TEXT, textId: "2019/03/04 - 2019/03/10" };
@@ -105,6 +107,10 @@ const userCasesDescriptor = [
 
   title("feedback.userCases.insightTitle", dateField),
   buttonField,
+
+  insightCard,
+  insightCard,
+  insightCard
 ];
 
 export default userCasesDescriptor;

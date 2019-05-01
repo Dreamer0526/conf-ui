@@ -2,7 +2,7 @@ import React from "react";
 import get from 'lodash/get';
 import { connect } from "react-redux";
 import { FormattedMessage } from 'react-intl';
-import { Row, Col, Button, Badge } from "antd";
+import { Row, Col, Button, Badge, Tag } from "antd";
 
 import Menu from "./Menu";
 import Tabs from "./Tabs";
@@ -39,6 +39,9 @@ class PageRenderer extends React.Component {
 
       case COMPONENT.IMAGE:
         return this.renderImage(field);
+
+      case COMPONENT.TAG:
+        return this.renderTag(field);
 
       case COMPONENT.MENU:
         return (
@@ -96,9 +99,9 @@ class PageRenderer extends React.Component {
     );
   }
 
-  renderButton({ textId, events = {}, cssFor = "", name = "" }) {
+  renderButton({ textId, events = {}, cssFor = "", name = "", ...rest }) {
     return (
-      <Button className={cssFor} {...this.registerEvents(events)} name={name}>
+      <Button className={cssFor} {...this.registerEvents(events)} name={name} {...rest}>
         <FormattedMessage
           id={textId}
           defaultMessage={textId}
@@ -107,12 +110,12 @@ class PageRenderer extends React.Component {
     );
   }
 
-  renderIcon({ icon = "", size = 1, cssFor = "", badge = {} }) {
+  renderIcon({ icon = "", size = 1, cssFor = "", badge }) {
     const Icon = (
       <span className={`icon-${size}x ${icon} ${cssFor}`} />
     );
 
-    return this.withBadge(Icon, badge);
+    return badge ? this.withBadge(Icon, badge) : Icon;
   }
 
   renderImage({ src = "", width = "50px" }) {
@@ -121,12 +124,24 @@ class PageRenderer extends React.Component {
     )
   }
 
-  renderLayout({ width = 24, offset = 0, children = [], cssFor = "" }) {
+  renderTag({ textId = "" }) {
     return (
+      <Tag color="blue" className="half-margin-top">
+        <FormattedMessage
+          id={textId}
+          defaultMessage={textId} />
+      </Tag>
+    );
+  }
+
+  renderLayout({ width = 24, offset = 0, children = [], cssFor = "", badge }) {
+    const Layout = (
       <Col xs={width} offset={offset} className={cssFor}>
         {children.map(child => this.renderComponent(child))}
       </Col>
     );
+
+    return badge ? this.withBadge(Layout, badge) : Layout;
   }
 
 
@@ -160,12 +175,8 @@ class PageRenderer extends React.Component {
 
 
   withBadge(WrappedComponent, badge) {
-    const { dataId = "" } = badge;
-    const count = get(this.props.data, dataId, 0);
-
-    return (
-      <Badge count={count}> {WrappedComponent} </Badge>
-    );
+    const count = (typeof badge === "string") ? get(this.props.data, badge, 0) : this.renderComponent(badge);
+    return (<Badge count={count}> {WrappedComponent} </Badge >);
   }
 
 }

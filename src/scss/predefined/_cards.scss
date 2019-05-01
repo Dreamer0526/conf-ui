@@ -1,0 +1,29 @@
+.insight-card {
+    border-radius: 3px;
+    border: 1px solid var(--color-border-grey);
+    background-color: var(--color-background-light);
+
+
+  .insight-card-body {
+    padding: var(--base-space) var(--dbl-space) 0;
+
+    .insight-card-text {
+      line-height: 20px;
+    }
+  
+    .insight-card-tags {
+      margin-top: var(--half-space);
+    }
+  }
+
+  .insight-card-footer {
+    text-align: center;
+    margin-top: var(--base-space);
+    padding: var(--base-space);
+    background-color: var(--color-background);
+
+    button {
+      margin-right: var(--half-space);
+    }
+  }
+}

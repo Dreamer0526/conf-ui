@@ -16,15 +16,18 @@ export const title = (textId, descField = {}) => ({
 });
 
 
-export const tabTitle = (icon, dataId, textId) => ({
+/**
+ * @param {String} icon icon name
+ * @param {OneOf[String, Object]} badge dataId of counting number or RendererIcon component
+ * @param {String} textId textId of text to show
+ */
+export const tabTitle = (icon, badge, textId) => ({
   type: COMPONENT.LAYOUT,
   children: [{
     type: COMPONENT.ICON,
     icon,
     size: 3,
-    badge: {
-      dataId
-    }
+    badge
   }, {
     type: COMPONENT.TEXT,
     cssFor: "half-margin-left",

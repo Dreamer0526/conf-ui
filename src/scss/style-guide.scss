@@ -14,6 +14,9 @@
 
 @import "./variables";
 
+@import "./predefined/cards";
+@import "./predefined/texts";
+
 @import "./components/icon";
 @import "./components/chart";
 @import "./components/text";
@@ -21,7 +24,6 @@
 @import "./components/typography";
 
 @import "./pages/poc";
-
 
 body {
   font-size: 14px;

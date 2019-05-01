@@ -1,4 +1,4 @@
-@for $i from 1 through 5 {
+@for $i from 1 through 10 {
   .icon-#{$i}x {
     height: #{14 + $i*2}px;
     width:  #{14 + $i*2}px;
@@ -8,6 +8,14 @@
     background-size: contain;
     vertical-align: middle;
     margin-right: 5px;
+
+    &.check {
+      background-image: url("../static/icons/icon_check.png");
+    }
+
+    &.hint {
+      background-image: url("../static/icons/icon_hint.png");
+    }
 
     &.users {
       background-image: url("../static/icons/icon_users.png");
