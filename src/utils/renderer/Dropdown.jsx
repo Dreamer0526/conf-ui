@@ -20,13 +20,10 @@ class Dropdown extends React.Component {
   }
 
   renderOptions() {
-    const { options, events, width, offset, cssFor } = this.props;
+    const { options, events, width, offset } = this.props;
 
     return (
-      /**
-       * @todo cssFor does not work for unknown reason
-       */
-      <Col xs={width} offset={offset} className={cssFor}>
+      <Col xs={width} offset={offset}>
         <Menu {...this.props.registerEvents(events)}>
           {options.map(option => {
             const { key, textId } = option;
@@ -58,7 +55,7 @@ class Dropdown extends React.Component {
   }
 
   render() {
-    const { width, offset, textId } = this.props;
+    const { width, offset, textId, cssFor } = this.props;
     const options = this.renderOptions();
 
     const title = textId ? (
@@ -66,7 +63,7 @@ class Dropdown extends React.Component {
     ) : this.findSelectedLabel();
 
     return (
-      <Col xs={width} offset={offset}>
+      <Col xs={width} offset={offset} className={cssFor}>
         <AntdDropdown overlay={options}>
           <div>
             {title} <Icon type="down" />

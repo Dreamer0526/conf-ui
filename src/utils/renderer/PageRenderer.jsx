@@ -2,7 +2,7 @@ import React from "react";
 import get from 'lodash/get';
 import { connect } from "react-redux";
 import { FormattedMessage } from 'react-intl';
-import { Row, Col, Button, Badge, Tag } from "antd";
+import { Row, Col, Button, Badge } from "antd";
 
 import Menu from "./Menu";
 import Tabs from "./Tabs";
@@ -99,9 +99,9 @@ class PageRenderer extends React.Component {
     );
   }
 
-  renderButton({ textId, events = {}, cssFor = "", name = "", ...rest }) {
+  renderButton({ textId, events = {}, cssFor = "", name = "", styleType = "" }) {
     return (
-      <Button className={cssFor} {...this.registerEvents(events)} name={name} {...rest}>
+      <Button className={cssFor} {...this.registerEvents(events)} name={name} type={styleType} >
         <FormattedMessage
           id={textId}
           defaultMessage={textId}
@@ -124,13 +124,20 @@ class PageRenderer extends React.Component {
     )
   }
 
-  renderTag({ textId = "" }) {
+  renderTag({ textId = "", events = {}, name = "" }) {
     return (
-      <Tag color="blue" className="half-margin-top">
+      <Button
+        ghost
+        size="small"
+        type="primary"
+        className="half-margin-top half-margin-right"
+        name={name}
+        {...this.registerEvents(events)}
+      >
         <FormattedMessage
           id={textId}
           defaultMessage={textId} />
-      </Tag>
+      </Button>
     );
   }
 
@@ -156,9 +163,12 @@ class PageRenderer extends React.Component {
          */
         const targetId = get(e, "key")  // dropdown item
           || get(e, "target.value")     // buttonRadio
-          || (e.currentTarget && e.currentTarget.getAttribute("name")) // button
+          || (e.currentTarget && e.currentTarget.getAttribute("name")) // button and tag
 
-        console.log(targetId)
+        /**
+         * @todo remove log
+         */
+        console.log(e, targetId)
 
         const action = targetId ? { type: actionType, targetId } : { type: actionType };
         this.props.dispatch(action);

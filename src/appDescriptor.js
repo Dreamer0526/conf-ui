@@ -42,7 +42,8 @@ export const header = [{
     }]
   }, {
     type: COMPONENT.DROPDOWN,
-    width: 12,
+    width: 3,
+    offset: 9,
     cssFor: "text-right",
     textId: "feedback.userName",
     events: {

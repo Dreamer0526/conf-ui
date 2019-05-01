@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 
-import App from "./App";
+import App from "./App.jsx";
 import { reducers } from "./state";
 
 import * as serviceWorker from "./serviceWorker";

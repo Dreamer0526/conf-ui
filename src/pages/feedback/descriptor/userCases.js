@@ -95,6 +95,7 @@ const buttonField = {
     events: {
       onClick: "add insight"
     },
+    styleType: "primary",
     textId: "buttonLabels.new"
   }]
 

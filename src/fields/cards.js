@@ -1,5 +1,8 @@
 import * as COMPONENT from "../constants/componentTypes";
 
+const styleType = "primary";
+
+
 const badgeField = {
   type: COMPONENT.ICON,
   size: 10,
@@ -27,6 +30,10 @@ const tagField = {
   cssFor: "insight-card-tags",
   children: [{
     type: COMPONENT.TAG,
+    name: "sampleTag",
+    events: {
+      onClick: "click on tag"
+    },
     textId: "大众总价值低"
   }, {
     type: COMPONENT.TAG,
@@ -44,15 +51,13 @@ const footerField = {
   cssFor: "insight-card-footer",
   children: [{
     type: COMPONENT.BUTTON,
-    size: "small",
     textId: "影响评估"
   }, {
     type: COMPONENT.BUTTON,
-    size: "small",
     textId: "邮件通知"
   }, {
     type: COMPONENT.BUTTON,
-    size: "small",
+    styleType,
     textId: "执行并通知"
   }]
 };
