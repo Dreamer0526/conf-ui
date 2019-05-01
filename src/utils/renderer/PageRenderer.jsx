@@ -124,14 +124,12 @@ class PageRenderer extends React.Component {
     )
   }
 
-  renderTag({ textId = "", events = {}, name = "" }) {
+  renderTag({ textId = "", events = {}, name = "", cssFor = "" }) {
     return (
       <Button
-        ghost
-        size="small"
-        type="primary"
-        className="half-margin-top half-margin-right"
         name={name}
+        ghost size="small" type="primary"
+        className={`half-margin-top half-margin-right ${cssFor}`}
         {...this.registerEvents(events)}
       >
         <FormattedMessage
