@@ -1,0 +1,32 @@
+#chart-comparison {
+  text {
+    fill: grey;
+  }
+
+  .axis path, .axis line {
+    fill: none;
+    stroke: grey;
+    shape-rendering: crispEdges;
+  }
+
+  .bar1 {
+    fill: #00C9FE;
+  }
+
+  .bar2 {
+    fill: #0082F0;
+  }
+}
+
+#chart-tooltip {
+  position: absolute;
+
+  width: 700px;
+  z-index: 1000;
+  text-align: center;
+  background-color: white;
+
+  border-radius: 5px;
+  border: 2px #00C9FE solid;
+  box-shadow: 0 5px 15px rgba(0, 79, 100, .3);
+}

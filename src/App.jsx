@@ -3,6 +3,8 @@ import { Layout } from 'antd';
 import { connect } from "react-redux";
 import { BrowserRouter, Route } from "react-router-dom";
 
+import Test from "./AppTest";
+
 import Poc from "./pages/poc/Poc";
 import Feedback from "./pages/feedback/Feedback";
 import PageRenderer from "./utils/renderer/PageRenderer";
@@ -36,8 +38,9 @@ class App extends React.Component {
                 </Layout.Header>
 
                 <Layout.Content>
-                  <Route path="/feedback" component={Feedback}></Route>
-                  <Route path="/poc" component={Poc} />
+                  <Route exact path="/" component={Test} />
+                  <Route exact path="/feedback" component={Feedback} />
+                  <Route exact path="/poc" component={Poc} />
                 </Layout.Content>
               </Layout>
             </Layout>

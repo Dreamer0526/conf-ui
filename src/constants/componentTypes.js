@@ -14,3 +14,4 @@ export const BUTTON_RADIO = "radio";
 
 export const TABLE = "table";
 export const CHART = "chart";
+export const COMPONENT = "comp";

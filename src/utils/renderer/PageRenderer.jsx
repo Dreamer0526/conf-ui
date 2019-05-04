@@ -25,7 +25,7 @@ class PageRenderer extends React.Component {
   }
 
   renderComponent(field) {
-    const { type } = field;
+    const { type, component } = field;
 
     switch (type) {
       case COMPONENT.TEXT:
@@ -77,6 +77,9 @@ class PageRenderer extends React.Component {
             registerEvents={this.registerEvents.bind(this)}
           />
         );
+
+      case COMPONENT.COMPONENT:
+        return component;
 
       case COMPONENT.LAYOUT:
       default:
