@@ -23,7 +23,7 @@ const menuField = {
       label: <Link to="/feedback"><span className="icon-2x exec" /></Link>,
     }, {
       key: "lead",
-      label: <Link to="/poc"><span className="icon-2x succ" /></Link>,
+      label: <Link to="/test"><span className="icon-2x succ" /></Link>,
     }
   ]
 };

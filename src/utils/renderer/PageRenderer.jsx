@@ -7,7 +7,6 @@ import { Row, Col, Button, Badge } from "antd";
 import Menu from "./Menu";
 import Tabs from "./Tabs";
 import Chart from "./Chart";
-import Table from "./Table";
 import Dropdown from "./Dropdown";
 import ButtonRadio from "./ButtonRadio";
 
@@ -67,9 +66,6 @@ class PageRenderer extends React.Component {
 
       case COMPONENT.CHART:
         return <Chart {...field} data={this.props.data} />;
-
-      case COMPONENT.TABLE:
-        return <Table {...field} data={this.props.data} />
 
       case COMPONENT.DROPDOWN:
         return (
@@ -193,10 +189,13 @@ class PageRenderer extends React.Component {
 }
 
 
+const mapStateToProps = state => ({ data: state });
+
 const mapDispatchToProps = dispatch => ({
   dispatch: action => dispatch(action)
 });
 
 export default connect(
+  mapStateToProps,
   mapDispatchToProps
 )(PageRenderer);

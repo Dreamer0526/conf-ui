@@ -4,8 +4,6 @@ import { connect } from "react-redux";
 import { BrowserRouter, Route } from "react-router-dom";
 
 import Test from "./Test";
-
-import Poc from "./pages/poc/Poc";
 import Feedback from "./pages/feedback/Feedback";
 import PageRenderer from "./utils/renderer/PageRenderer";
 
@@ -38,9 +36,8 @@ class App extends React.Component {
                 </Layout.Header>
 
                 <Layout.Content>
-                  <Route exact path="/" component={Test} />
                   <Route exact path="/feedback" component={Feedback} />
-                  <Route exact path="/poc" component={Poc} />
+                  <Route exact path="/test" component={Test} />
                 </Layout.Content>
               </Layout>
             </Layout>
