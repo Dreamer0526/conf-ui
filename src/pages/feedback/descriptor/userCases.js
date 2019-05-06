@@ -11,8 +11,8 @@ const dateField = { type: COMPONENT.TEXT, textId: "2019/03/04 - 2019/03/10" };
 
 const radioField = {
   type: COMPONENT.BUTTON_RADIO,
-  width: 24,
-  cssFor: "text-right",
+  width: 8,
+  cssFor: "text-right half-margin-top z-index-1",
   events: {
     onChange: "button radio action"
   },
@@ -34,7 +34,8 @@ const chartField = {
 
 const buttonField = {
   type: COMPONENT.LAYOUT,
-  cssFor: "text-right",
+  width: 8,
+  cssFor: "text-right base-margin-top",
   children: [{
     type: COMPONENT.BUTTON,
     events: {
@@ -47,16 +48,22 @@ const buttonField = {
 }
 
 const userCasesDescriptor = [
-  title("feedback.userCases.chartTitle", dateField),
+  { ...title("feedback.userCases.chartTitle", dateField), width: 16 },
   radioField,
+
   chartField,
 
-  title("feedback.userCases.insightTitle", dateField),
+  { ...title("feedback.userCases.insightTitle", dateField), width: 16 },
   buttonField,
 
-  insightCard,
-  insightCard,
-  insightCard
+  {
+    cssFor: "half-margin-top",
+    children: [
+      insightCard,
+      insightCard,
+      insightCard
+    ]
+  }
 ];
 
 export default userCasesDescriptor;

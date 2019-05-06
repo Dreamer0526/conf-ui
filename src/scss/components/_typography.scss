@@ -167,3 +167,9 @@
 .border-bottom {
   border-bottom: 1px solid var(--color-border-grey) !important;
 }
+
+@for $i from 1 through 10 {
+  .z-index-#{$i} {
+    z-index: #{$i};
+  }
+}

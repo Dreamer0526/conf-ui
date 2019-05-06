@@ -1,26 +1,22 @@
 import React from "react";
-import { get, set, findKey } from 'lodash';
+import { get, set } from 'lodash';
 import { connect } from "react-redux";
 
 import ReactEcharts from "echarts-for-react";
 
 
 const tooltipWidth = 700, tooltipHeight = 300;
-const pointerBias = {
-  x: -120,
-  y: -50
-};
+const pointerBias = { x: -120, y: -50 };
 
+const origin = {
+  showTooltip: false,
+  left: 0,
+  top: 0,
+};
 
 class UserCaseBarChart extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      showTooltip: false,
-      left: 0,
-      top: 0,
-    };
 
     this.handleOnClick = this.handleOnClick.bind(this);
     this.handleMouseOut = this.handleMouseOut.bind(this);
@@ -33,13 +29,15 @@ class UserCaseBarChart extends React.Component {
       "mouseover": this.handleMouseOver,
     };
 
+    this.state = { ...origin };
+
     this.chart = null;
   }
 
+  /**
+   * @desc manually setOption for echart when updated
+   */
   componentDidUpdate() {
-    /**
-     * manually setOption for echart when updated
-     */
     const option = this.getOption();
     this.chart.getEchartsInstance().setOption(option);
   }
@@ -48,7 +46,7 @@ class UserCaseBarChart extends React.Component {
     const { option, messages, data } = this.props;
 
     /**
-     * Replace placeholder with data/localization
+     * @desc Replace placeholder with data/localization
      */
     Object.keys(option).forEach(attr => {
       const value = option[attr];
@@ -106,7 +104,7 @@ class UserCaseBarChart extends React.Component {
 
   handleMouseOver(params) {
     this.setState({ showTooltip: true });
-    console.log(params);
+    // console.log(params);
   }
 
   handleMouseMove(event) {
@@ -154,7 +152,6 @@ class UserCaseBarChart extends React.Component {
     };
     return <ReactEcharts option={option} />
   }
-
 }
 
 const mapStateToProps = state => ({
