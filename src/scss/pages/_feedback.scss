@@ -1,17 +1,12 @@
-#chart-comparison {
-  .bar1 {
-    fill: #00C9FE;
-  }
-
-  .bar2 {
-    fill: #0082F0;
-  }
+#user-case-bar-chart {  
+  width: 90%;
+  height: 300px;
 }
+
 
 .chart-tooltip {
   position: absolute;
 
-  width: 700px;
   z-index: 1000;
   text-align: center;
   background-color: white;
@@ -19,12 +14,4 @@
   border-radius: 5px;
   border: 2px #00C9FE solid;
   box-shadow: 0 5px 15px rgba(0, 79, 100, .3);
-}
-
-#chart-multi-line {
-  .line {
-    fill: none;
-    stroke: steelblue;
-    stroke-width: 1.5px;
-  }
 }
