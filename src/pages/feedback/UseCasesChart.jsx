@@ -1,6 +1,7 @@
 import React from "react";
 import { get, set } from 'lodash';
 import { connect } from "react-redux";
+import { Collapse, Button, Icon, Row } from "antd";
 
 import ReactEcharts from "echarts-for-react";
 
@@ -9,16 +10,18 @@ const tooltipWidth = 700, tooltipHeight = 300;
 const pointerBias = { x: -120, y: -50 };
 
 const origin = {
+  activeCollapseKey: null,
   showTooltip: false,
   left: 0,
   top: 0,
 };
 
-class UserCaseBarChart extends React.Component {
+class UseCasesChart extends React.Component {
   constructor(props) {
     super(props);
 
     this.handleOnClick = this.handleOnClick.bind(this);
+    this.handleCollapse = this.handleCollapse.bind(this);
     this.handleMouseOut = this.handleMouseOut.bind(this);
     this.handleMouseOver = this.handleMouseOver.bind(this);
     this.handleMouseMove = this.handleMouseMove.bind(this);
@@ -32,6 +35,7 @@ class UserCaseBarChart extends React.Component {
     this.state = { ...origin };
 
     this.chart = null;
+    this.timer = null;
   }
 
   /**
@@ -75,36 +79,62 @@ class UserCaseBarChart extends React.Component {
 
 
   render() {
-    const { top, left, showTooltip } = this.state;
+    const { top, left, showTooltip, activeCollapseKey } = this.state;
     const visibility = showTooltip ? "visible" : "hidden";
+
+    const mainChart = (
+      <ReactEcharts
+        ref={e => this.chart = e}
+        option={this.getOption()}
+        onEvents={this.onEvents}
+      />
+    );
+    const tooltipChart = this.renderLineChart();
+    const collapseChart = this.renderLineChart();
 
     return (
       <div onMouseMove={this.handleMouseMove} >
-        <ReactEcharts id="user-case-bar-chart"
-          ref={e => this.chart = e}
-          option={this.getOption()}
-          onEvents={this.onEvents}
-        />
+        <Collapse
+          bordered={false}
+          activeKey={activeCollapseKey}
+          onChange={this.handleCollapse}
+        >
+          <Collapse.Panel key="1"
+            showArrow={false}
+            header={mainChart}
+          >
+            {collapseChart}
+          </Collapse.Panel>
+        </Collapse>
 
-        <div className="chart-tooltip" style={{ top, left, visibility, width: tooltipWidth, height: tooltipHeight }} >
-          {this.renderLineChart()}
+        <div className="tooltip-chart-container" style={{ top, left, visibility, width: tooltipWidth, height: tooltipHeight }} >
+          {tooltipChart}
         </div>
       </div>
     );
   }
 
 
+  handleCollapse(key) {
+    this.setState({ activeCollapseKey: key });
+  }
+
   handleOnClick(params) {
-    console.log(params);
+    const { dataIndex, seriesIndex } = params;
+    console.log(dataIndex, seriesIndex);
   }
 
   handleMouseOut() {
+    clearTimeout(this.timer);
     this.setState({ showTooltip: false });
   }
 
   handleMouseOver(params) {
-    this.setState({ showTooltip: true });
-    // console.log(params);
+    clearTimeout(this.timer);
+
+    this.timer = setTimeout(() => {
+      this.setState({ showTooltip: true });
+    }, 500);
   }
 
   handleMouseMove(event) {
@@ -150,7 +180,14 @@ class UserCaseBarChart extends React.Component {
         }
       ]
     };
-    return <ReactEcharts option={option} />
+    return (
+      <Row>
+        <Row className="text-right">
+          <span className="icon-2x close" onClick={this.handleCollapse} />
+        </Row>
+        <ReactEcharts option={option} />
+      </Row>
+    );
   }
 }
 
@@ -161,4 +198,4 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps
-)(UserCaseBarChart);
+)(UseCasesChart);

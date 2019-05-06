@@ -1,5 +1,5 @@
 import React from "react";
-import UserCaseBarChart from "../UserCaseBarChart";
+import UseCasesChart from "../UseCasesChart";
 
 import { title } from "../../../fields/texts";
 import { insightCard } from "../../../fields/cards";
@@ -28,7 +28,7 @@ const radioField = {
 
 const chartField = {
   type: COMPONENT.COMPONENT,
-  component: <UserCaseBarChart option={getOption()} />
+  component: <UseCasesChart option={getOption()} />
 };
 
 

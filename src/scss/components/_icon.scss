@@ -9,6 +9,10 @@
     vertical-align: middle;
     margin-right: 5px;
 
+    &.close {
+      background-image: url("../static/icons/icon_close.png");
+    }
+
     &.check {
       background-image: url("../static/icons/icon_check.png");
     }
