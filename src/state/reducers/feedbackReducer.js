@@ -2,7 +2,9 @@
 
 const origin = {
   userCases: {
-    msgCount: 0
+    msgCount: 0,
+    valueChartSeries1: [1, 2, 2, 3, 4, 4, 5, 6, 7, 8],
+    valueChartSeries2: [25, 50, 75, 100, 125, 150, 200, 224, 250, 275]
   },
   branches: {
     msgCount: 1

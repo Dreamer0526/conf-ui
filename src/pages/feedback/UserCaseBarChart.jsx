@@ -1,5 +1,7 @@
 import React from "react";
-import ec from "echarts";
+import { get, set, findKey } from 'lodash';
+import { connect } from "react-redux";
+
 import ReactEcharts from "echarts-for-react";
 
 
@@ -9,48 +11,68 @@ const pointerBias = {
   y: -50
 };
 
+
 class UserCaseBarChart extends React.Component {
+  constructor(props) {
+    super(props);
 
-  state = {
-    showTooltip: false,
-    top: 0,
-    left: 0
-  };
+    this.state = {
+      showTooltip: false,
+      left: 0,
+      top: 0,
+    };
 
-  componentDidMount() {
-    const { option } = this.props;
+    this.handleOnClick = this.handleOnClick.bind(this);
+    this.handleMouseOut = this.handleMouseOut.bind(this);
+    this.handleMouseOver = this.handleMouseOver.bind(this);
+    this.handleMouseMove = this.handleMouseMove.bind(this);
 
-    const myChart = ec.init(document.getElementById('user-case-bar-chart'));
-    myChart.setOption(option);
+    this.onEvents = {
+      "click": this.handleOnClick,
+      "mouseout": this.handleMouseOut,
+      "mouseover": this.handleMouseOver,
+    };
 
-    myChart.on('click', this.handleOnClick.bind(this));
-    myChart.on('mouseover', this.handleMouseOver.bind(this));
-    myChart.on('mouseout', this.handleMouseOut.bind(this));
+    this.chart = null;
   }
 
+  componentDidUpdate() {
+    /**
+     * manually setOption for echart when updated
+     */
+    const option = this.getOption();
+    this.chart.getEchartsInstance().setOption(option);
+  }
 
-  handleMouseMove(event) {
-    const windowWidth = document.body.clientWidth;
-    const maxLeft = windowWidth - tooltipWidth - 20;
+  getOption() {
+    const { option, messages, data } = this.props;
 
+    /**
+     * Replace placeholder with data/localization
+     */
+    Object.keys(option).forEach(attr => {
+      const value = option[attr];
+      if (!(value instanceof Array)) return;
 
-    this.setState({
-      top: event.clientY + pointerBias.y,
-      left: Math.min(event.clientX, maxLeft) + pointerBias.x
+      value.forEach((conf, index) => {
+        const { nameId, dataId } = conf;
+        if (!nameId && !dataId) return;
+
+        const path = `${attr}[${index}]`;
+
+        // data
+        const numbers = get(data, dataId, 0);
+        set(option, `${path}.data`, numbers);
+
+        // localization
+        const text = get(messages, nameId, "");
+        const key = attr !== "xAxis" ? "name" : "data";
+        set(option, `${path}.${key}`, text);
+      });
+
     });
-  }
 
-  handleOnClick(params) {
-    console.log(params);
-  }
-
-  handleMouseOver(params) {
-    this.setState({ showTooltip: true });
-    console.log(params);
-  }
-
-  handleMouseOut() {
-    this.setState({ showTooltip: false });
+    return option;
   }
 
 
@@ -59,8 +81,13 @@ class UserCaseBarChart extends React.Component {
     const visibility = showTooltip ? "visible" : "hidden";
 
     return (
-      <div onMouseMove={this.handleMouseMove.bind(this)} >
-        <div id="user-case-bar-chart" />
+      <div onMouseMove={this.handleMouseMove} >
+        <ReactEcharts id="user-case-bar-chart"
+          ref={e => this.chart = e}
+          option={this.getOption()}
+          onEvents={this.onEvents}
+        />
+
         <div className="chart-tooltip" style={{ top, left, visibility, width: tooltipWidth, height: tooltipHeight }} >
           {this.renderLineChart()}
         </div>
@@ -68,19 +95,42 @@ class UserCaseBarChart extends React.Component {
     );
   }
 
+
+  handleOnClick(params) {
+    console.log(params);
+  }
+
+  handleMouseOut() {
+    this.setState({ showTooltip: false });
+  }
+
+  handleMouseOver(params) {
+    this.setState({ showTooltip: true });
+    console.log(params);
+  }
+
+  handleMouseMove(event) {
+    const windowWidth = document.body.clientWidth;
+    const maxLeft = windowWidth - tooltipWidth - 20;
+
+    this.setState({
+      top: event.clientY + pointerBias.y,
+      left: Math.min(event.clientX, maxLeft) + pointerBias.x
+    });
+  }
+
+
   renderLineChart() {
     const option = {
-      legend: {
-        data: ['邮件营销', '联盟广告', '视频广告']
-      },
-      xAxis: {
+      legend: {},
+      xAxis: [{
         type: 'category',
         boundaryGap: false,
         data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
-      },
-      yAxis: {
+      }],
+      yAxis: [{
         type: 'value'
-      },
+      }],
       series: [
         {
           name: '邮件营销',
@@ -107,4 +157,11 @@ class UserCaseBarChart extends React.Component {
 
 }
 
-export default UserCaseBarChart;
+const mapStateToProps = state => ({
+  messages: state.setting.messages,
+  data: state
+});
+
+export default connect(
+  mapStateToProps
+)(UserCaseBarChart);
