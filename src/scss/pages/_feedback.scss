@@ -1,14 +1,4 @@
 #chart-comparison {
-  text {
-    fill: grey;
-  }
-
-  .axis path, .axis line {
-    fill: none;
-    stroke: grey;
-    shape-rendering: crispEdges;
-  }
-
   .bar1 {
     fill: #00C9FE;
   }
@@ -18,7 +8,7 @@
   }
 }
 
-#chart-tooltip {
+.chart-tooltip {
   position: absolute;
 
   width: 700px;
@@ -29,4 +19,12 @@
   border-radius: 5px;
   border: 2px #00C9FE solid;
   box-shadow: 0 5px 15px rgba(0, 79, 100, .3);
+}
+
+#chart-multi-line {
+  .line {
+    fill: none;
+    stroke: steelblue;
+    stroke-width: 1.5px;
+  }
 }

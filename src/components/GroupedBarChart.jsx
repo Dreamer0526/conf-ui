@@ -1,5 +1,6 @@
 import React from "react";
 import * as d3 from "d3";
+import MultiLineChart from "./MultiLineChart";
 
 
 const data = [
@@ -19,11 +20,8 @@ const margin = { top: 50, right: 50, bottom: 30, left: 50 };
 const height = 300 - margin.top - margin.bottom;
 const width = 800 - margin.left - margin.right;
 
-const heightD = 300 - margin.top - margin.bottom;
-const widthD = 600 - margin.left - margin.right;
 
-
-class AppTest extends React.Component {
+class GroupedBarChart extends React.Component {
   state = {
     showDetail: false,
     top: 0,
@@ -32,7 +30,6 @@ class AppTest extends React.Component {
 
   componentDidMount() {
     this.renderChart();
-    this.renderDetail();
   }
 
   renderChart() {
@@ -114,78 +111,6 @@ class AppTest extends React.Component {
       .attr("height", (d, i, j) => height - y1(d.number));
   }
 
-  renderDetail() {
-    // scale
-    const x = d3.scale.ordinal()
-      .rangeRoundBands([0, widthD], .3)
-      .domain(data.map(d => d.year));
-    const y0 = d3.scale.linear()
-      .range([heightD, 0])
-      .domain([d3.min(data, d => d.money) - 1, d3.max(data, d => d.money) + 1]);
-    const y1 = d3.scale.linear()
-      .domain([0, 5])
-      .range([heightD, 0])
-      .domain([0, d3.max(data, d => d.number) + 1]);
-
-    // axis
-    const xAxis = d3.svg.axis().scale(x).orient("bottom");
-    const yAxisLeft = d3.svg.axis().scale(y0).orient("left");
-    const yAxisRight = d3.svg.axis().scale(y1).ticks(5).orient("right");
-
-    // create graph
-    const svg = d3.select("#chart-tooltip")
-      .append("svg")
-      .attr("width", widthD + margin.left + margin.right)
-      .attr("height", heightD + margin.top + margin.bottom)
-      .append("g")
-      .attr("class", "graph")
-      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-
-    svg.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + heightD + ")")
-      .call(xAxis);
-
-    svg.append("g")
-      .attr("class", "y axis axisLeft")
-      .attr("transform", "translate(0,0)")
-      .call(yAxisLeft)
-      .append("text")
-      .attr("y", 6)
-      .attr("dy", "-2em")
-      .style("text-anchor", "end")
-      .style("text-anchor", "end")
-      .text("Dollars");
-
-    svg.append("g")
-      .attr("class", "y axis axisRight")
-      .attr("transform", "translate(" + (widthD) + ",0)")
-      .call(yAxisRight)
-      .append("text")
-      .attr("y", 6)
-      .attr("dy", "-2em")
-      .attr("dx", "2em")
-      .style("text-anchor", "end")
-      .text("#");
-
-
-    const bars = svg.selectAll(".bar").data(data).enter();
-
-    bars.append("rect")
-      .attr("class", "bar1")
-      .attr("x", d => x(d.year))
-      .attr("width", x.rangeBand() / 2)
-      .attr("y", d => y0(d.money))
-      .attr("height", (d, i, j) => heightD - y0(d.money));
-
-    bars.append("rect")
-      .attr("class", "bar2")
-      .attr("x", d => x(d.year) + x.rangeBand() / 2)
-      .attr("width", x.rangeBand() / 2)
-      .attr("y", d => y1(d.number))
-      .attr("height", (d, i, j) => heightD - y1(d.number));
-  }
 
   setMousePos(e) {
     this.setState({
@@ -200,11 +125,13 @@ class AppTest extends React.Component {
 
     return (
       <div onMouseMove={this.setMousePos.bind(this)}>
-        <div id="chart-comparison" className="text-center" />
-        <div id="chart-tooltip" style={{ top, left, visibility }} />
+        <div id="chart-comparison" className="text-center d3-chart" />
+        <div className="chart-tooltip" style={{ top, left, visibility }} >
+          <MultiLineChart />
+        </div>
       </ div >
     );
   }
 }
 
-export default AppTest;
+export default GroupedBarChart;

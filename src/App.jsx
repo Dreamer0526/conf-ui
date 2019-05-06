@@ -3,7 +3,7 @@ import { Layout } from 'antd';
 import { connect } from "react-redux";
 import { BrowserRouter, Route } from "react-router-dom";
 
-import Test from "./AppTest";
+import Test from "./components/GroupedBarChart";
 
 import Poc from "./pages/poc/Poc";
 import Feedback from "./pages/feedback/Feedback";

@@ -1,5 +1,5 @@
 import React from "react";
-import AppTest from "../../../AppTest";
+import GroupedBarChart from "../../../components/GroupedBarChart";
 
 import { title } from "../../../fields/texts";
 import { insightCard } from "../../../fields/cards";
@@ -27,7 +27,7 @@ const radioField = {
 
 const chartField = {
   type: COMPONENT.COMPONENT,
-  component: <AppTest />
+  component: <GroupedBarChart />
 };
 
 
