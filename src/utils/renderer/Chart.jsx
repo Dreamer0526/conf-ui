@@ -4,19 +4,10 @@ import { connect } from "react-redux";
 import ReactEcharts from "echarts-for-react";
 
 
-class Chart extends React.Component {
-  chart = null;
+export class BaseChart extends React.Component {
 
-  /**
-   * @desc manually setOption for echart when updated
-   */
-  componentDidUpdate() {
-    const option = this.getOption();
-    this.chart.getEchartsInstance().setOption(option);
-  }
-
-  getOption() {
-    const { option, messages, data } = this.props;
+  fillInData(option) {
+    const { messages, data } = this.props;
 
     /**
      * @desc Replace placeholder with data/localization
@@ -49,10 +40,10 @@ class Chart extends React.Component {
   }
 
   render() {
-    const { ...rest } = this.props;
+    const { option, ...rest } = this.props;
 
     return (
-      <ReactEcharts ref={e => this.chart = e} option={this.getOption()} {...rest} />
+      <ReactEcharts option={this.fillInData(option)} {...rest} />
     );
   }
 }
@@ -65,4 +56,4 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps
-)(Chart);
+)(BaseChart);

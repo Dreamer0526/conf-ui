@@ -9,8 +9,13 @@
     vertical-align: middle;
     margin-right: 5px;
 
-    &.triangle {
-      background-image: url("../static/icons/icon_triangle.png");
+
+    &.triangle-yellow {
+      background-image: url("../static/icons/icon_triangle_yellow.png");
+    }    
+
+    &.triangle-blue {
+      background-image: url("../static/icons/icon_triangle_blue.png");
     }    
 
     &.close {

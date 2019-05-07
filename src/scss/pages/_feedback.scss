@@ -25,18 +25,37 @@
 
   &.leadValue {
     border: 2px var(--color-blue-bar1) solid;
+
+    .collapse-chart-pointer {
+      position: absolute;
+      margin: -15px;
+      height: 18px;
+      width:  18px;
+        
+      background: no-repeat center center;
+      background-size: contain;
+
+      background-image: url("../static/icons/icon_triangle_blue.png");
+    }
   }
 
   &.execConversion {
     border: 2px var(--color-yellow-bar1) solid;
+
+    .collapse-chart-pointer {
+      position: absolute;
+      margin: -15px;
+      height: 18px;
+      width:  18px;
+        
+      background: no-repeat center center;
+      background-size: contain;
+
+      background-image: url("../static/icons/icon_triangle_yellow.png");
+    }
   }
 
   .collapse-chart {
     height: 270px !important;
-  }
-
-  .collapse-chart-pointer {
-    position: absolute;
-    margin: -15px;
   }
 }

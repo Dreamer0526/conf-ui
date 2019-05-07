@@ -1,10 +1,11 @@
 import React from "react";
-import { Collapse } from "antd";
-import { get, set } from 'lodash';
+import { get } from 'lodash';
 import { connect } from "react-redux";
+
+import { Collapse } from "antd";
 import ReactEcharts from "echarts-for-react";
 import { FormattedMessage } from "react-intl";
-import Chart from "../../utils/renderer/Chart";
+import Chart, { BaseChart } from "../../utils/renderer/Chart";
 
 import getBarOption from "./metadata/barChartOption";
 import getLineOption from "./metadata/lineChartOption";
@@ -27,7 +28,7 @@ const origin = {
   collapseChartOption: {},
 };
 
-class UseCasesChart extends React.Component {
+class UseCasesChart extends BaseChart {
   constructor(props) {
     super(props);
 
@@ -43,51 +44,7 @@ class UseCasesChart extends React.Component {
     };
 
     this.state = { ...origin };
-
-    this.chart = null;
     this.timer = null;
-  }
-
-  /**
-   * @desc manually setOption for echart when updated
-   */
-  componentDidUpdate() {
-    const option = this.getOption();
-    this.chart.getEchartsInstance().setOption(option);
-  }
-
-  getOption() {
-    const { activeChart, messages, data } = this.props;
-
-    const option = getBarOption(activeChart);
-    /**
-     * @desc Replace placeholder with data/localization
-     */
-    Object.keys(option).forEach(attr => {
-      const value = option[attr];
-      if (!(value instanceof Array)) return;
-
-      value.forEach((conf, index) => {
-        const { nameId, dataId } = conf;
-        const path = `${attr}[${index}]`;
-
-        // fill in data
-        if (dataId) {
-          const numbers = get(data, dataId, 0);
-          set(option, `${path}.data`, numbers);
-        }
-
-        // localization
-        if (nameId) {
-          const text = get(messages, nameId, "");
-          const key = attr !== "xAxis" ? "name" : "data";
-          set(option, `${path}.${key}`, text);
-        }
-      });
-
-    });
-
-    return option;
   }
 
 
@@ -117,7 +74,7 @@ class UseCasesChart extends React.Component {
 
     return (
       <div className={`collapse-chart-container ${activeChart}`}>
-        <span className="icon-2x triangle collapse-chart-pointer" style={{ left: pointerPos + pointerBias.x }} />
+        <span className="collapse-chart-pointer" style={{ left: pointerPos + pointerBias.x }} />
         <span className="icon-2x close pull-right half-margin" onClick={() => this.setState({ showCollapse: false })} />
         {collapseTitle}
         <Chart option={collapseChartOption} className="collapse-chart" />
@@ -127,12 +84,13 @@ class UseCasesChart extends React.Component {
 
   render() {
     const { showTooltip, showCollapse } = this.state;
+    const { activeChart } = this.props;
+    const option = getBarOption(activeChart);
 
     const mainChart = (
       <div onMouseMove={this.handleMouseMove}>
         <ReactEcharts
-          ref={e => this.chart = e}
-          option={this.getOption()}
+          option={this.fillInData(option)}
           onEvents={this.onEvents}
         />
       </div>
