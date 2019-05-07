@@ -6,12 +6,27 @@
   background-color: white;
 
   border-radius: 5px;
-  border: 2px #00C9FE solid;
-  box-shadow: 3px 3px 5px rgba(0, 79, 100, .5);
+
+  &.leadValue {
+    border: 2px var(--color-blue-bar1) solid;
+    box-shadow: 3px 3px 5px rgba(0, 79, 100, .5);
+  }
+
+  &.execConversion {
+    border: 2px var(--color-yellow-bar1) solid;
+    box-shadow: 3px 3px 5px rgba(100, 67, 0, .5);
+  }
 }
 
 .collapse-chart-container {
-  border: 2px #00C9FE solid;
   border-radius: 5px;
   text-align: center;
+
+  &.leadValue {
+    border: 2px var(--color-blue-bar1) solid;
+  }
+
+  &.execConversion {
+    border: 2px var(--color-yellow-bar1) solid;
+  }
 }

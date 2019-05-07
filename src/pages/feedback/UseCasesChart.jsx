@@ -6,6 +6,7 @@ import ReactEcharts from "echarts-for-react";
 import { FormattedMessage } from "react-intl";
 import Chart from "../../utils/renderer/Chart";
 
+import getBarOption from "./metadata/barChartOption";
 import getLineOption from "./metadata/lineChartOption";
 
 
@@ -54,8 +55,9 @@ class UseCasesChart extends React.Component {
   }
 
   getOption() {
-    const { option, messages, data } = this.props;
+    const { activeChart,messages, data } = this.props;
 
+    const option = getBarOption(activeChart);
     /**
      * @desc Replace placeholder with data/localization
      */
@@ -89,11 +91,12 @@ class UseCasesChart extends React.Component {
 
   renderTooltip() {
     const { tooltipX, tooltipY, tooltipChartOption, tooltipTitle } = this.state;
+    const { activeChart } = this.props;
 
     return (
       <div
         style={{ top: tooltipY, left: tooltipX, width: tooltipWidth }}
-        className="tooltip-chart-container"
+        className={`tooltip-chart-container ${activeChart}`}
       >
         {tooltipTitle}
         <Chart option={tooltipChartOption} />
@@ -103,9 +106,10 @@ class UseCasesChart extends React.Component {
 
   renderCollapse() {
     const { collapseTitle, collapseChartOption } = this.state;
+    const { activeChart } = this.props;
 
     return (
-      <div className="collapse-chart-container">
+      <div className={`collapse-chart-container ${activeChart}`}>
         <span className="icon-2x close pull-right half-margin" onClick={() => this.setState({ showCollapse: false })} />
         {collapseTitle}
         <Chart option={collapseChartOption} />
@@ -174,10 +178,10 @@ class UseCasesChart extends React.Component {
 
 
   configTooltip({ dataIndex, seriesIndex }) {
-    const { data, messages } = this.props;
+    const { activeChart, data, messages } = this.props;
 
     const category = get(messages, `feedback.useCases.mainX[${dataIndex}]`);
-    const series = get(messages, `feedback.useCases.mainY${seriesIndex + 1}`);
+    const series = get(messages, `feedback.useCases.mainY${seriesIndex + 1}.${activeChart}`);
     const tooltipTitle = (
       <h1 className="base-margin-top">
         <FormattedMessage
@@ -219,6 +223,7 @@ class UseCasesChart extends React.Component {
 }
 
 const mapStateToProps = state => ({
+  activeChart: state.feedback.useCases.activeChart,
   messages: state.setting.messages,
   data: state
 });

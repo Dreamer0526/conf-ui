@@ -2,10 +2,11 @@ import React from "react";
 import UseCasesChart from "../UseCasesChart";
 
 import { title } from "../../../fields/texts";
-import option from "../metadata/barChartOption";
 import { insightCard } from "../../../fields/cards";
 
+import * as ACTION from "../../../constants/actionTypes";
 import * as COMPONENT from "../../../constants/componentTypes";
+
 
 const dateField = { type: COMPONENT.TEXT, textId: "2019/03/04 - 2019/03/10" };
 
@@ -14,7 +15,7 @@ const radioField = {
   width: 8,
   cssFor: "text-right half-margin-top z-index-1",
   events: {
-    onChange: "button radio action"
+    onChange: ACTION.SWITCH_USE_CASE_CHART
   },
   defaultSelectedKey: "leadValue",
   options: [{
@@ -28,7 +29,7 @@ const radioField = {
 
 const chartField = {
   type: COMPONENT.COMPONENT,
-  component: <UseCasesChart option={option} />
+  component: <UseCasesChart />
 };
 
 
