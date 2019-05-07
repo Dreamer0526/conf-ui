@@ -4,8 +4,10 @@ const origin = {
   useCases: {
     msgCount: 0,
     valueChart: {
-      mainSeries1: [1, 2, 2, 3, 4, 4, 5, 6, 7, 8],
-      mainSeries2: [25, 50, 75, 100, 125, 150, 200, 224, 250, 275],
+      mainSeries: [
+        [1, 2, 2, 3, 4, 4, 5, 6, 7, 8],
+        [25, 50, 75, 100, 125, 150, 200, 224, 250, 275]
+      ],
 
       // tooltip chart data
       tooltipSeries: {

@@ -16,9 +16,7 @@ export default {
       tooltipTitle: "{category} - 近期用例{series}变化图",
       tooltipX: ["6月", "7月", "8月", "9月", "10月", "11月", "12月", "1月", "2月", "3月", "4月", "5月"],
       tooltipY: "平均价值（万元）",
-      tooltipSeries1: "高潜提升用例",
-      tooltipSeries2: "最高价值用例",
-      tooltipSeries3: "最低价值用例",
+      tooltipSeries: ["高潜提升用例", "最高价值用例", "最低价值用例"],
     }
 
   },

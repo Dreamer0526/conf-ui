@@ -18,8 +18,6 @@ const origin = {
   tooltipX: 0,
   tooltipY: 0,
   showTooltip: false,
-  tooltipDataIndex: 0,
-  tooltipSeriesIndex: 0,
   tooltipChartOption: {}
 };
 
@@ -87,24 +85,40 @@ class UseCasesChart extends React.Component {
   }
 
 
-  renderTooltip() {
-    const { tooltipX, tooltipY, tooltipChartOption, tooltipDataIndex, tooltipSeriesIndex } = this.state;
-    const { messages } = this.props;
+  configTooltip({ dataIndex, seriesIndex }) {
+    const { data, messages } = this.props;
 
-    const category = get(messages, "feedback.useCases.valueChart.mainX")[tooltipDataIndex];
-    const series = get(messages, `feedback.useCases.valueChart.mainY${tooltipSeriesIndex + 1}`);
+    const category = get(messages, "feedback.useCases.valueChart.mainX")[dataIndex];
+    const series = get(messages, `feedback.useCases.valueChart.mainY${seriesIndex + 1}`);
+    const tooltipTitle = (
+      <h1 className="base-margin-top">
+        <FormattedMessage
+          id="feedback.useCases.valueChart.tooltipTitle"
+          values={{ category, series }}
+        />
+      </h1>
+    );
+
+    const xLabel = get(messages, "feedback.useCases.valueChart.tooltipX");
+    const seriesName = get(messages, "feedback.useCases.valueChart.tooltipSeries");
+    const seriesData = get(data, `feedback.useCases.valueChart.tooltipSeries.${dataIndex}.${seriesIndex}`);
+    const tooltipChartOption = getLineOption({ xLabel, seriesName, seriesData });
+
+    this.setState({
+      tooltipTitle,
+      tooltipChartOption
+    });
+  }
+
+  renderTooltip() {
+    const { tooltipX, tooltipY, tooltipChartOption, tooltipTitle } = this.state;
 
     return (
       <div
         style={{ top: tooltipY, left: tooltipX, width: tooltipWidth }}
         className="tooltip-chart-container"
       >
-        <h1 className="base-margin-top">
-          <FormattedMessage
-            id="feedback.useCases.valueChart.tooltipTitle"
-            values={{ category, series }}
-          />
-        </h1>
+        {tooltipTitle}
         <Chart option={tooltipChartOption} />
       </div>
     );
@@ -158,18 +172,7 @@ class UseCasesChart extends React.Component {
   handleMouseOver(params) {
     clearTimeout(this.timer);
 
-    const { dataIndex, seriesIndex } = params;
-    const tooltipChartOption = getLineOption({
-      prefix: "feedback.useCases.valueChart.tooltip",
-      dataIndex,
-      seriesIndex,
-      seriesCount: 3
-    });
-    this.setState({
-      tooltipChartOption,
-      tooltipDataIndex: dataIndex,
-      tooltipSeriesIndex: seriesIndex
-    });
+    this.configTooltip(params);
 
     this.timer = setTimeout(() => {
       this.setState({ showTooltip: true });

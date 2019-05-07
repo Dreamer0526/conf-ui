@@ -37,20 +37,20 @@ const option = {
   series: [
     {
       // name: 'Forest',
-      nameId: "feedback.useCases.valueChart.mainSeries1",
+      nameId: "feedback.useCases.valueChart.mainSeries[0]",
       type: 'bar',
       barGap: 0.1,
       yAxisIndex: 0,
-      dataId: "feedback.useCases.valueChart.mainSeries1"
+      dataId: "feedback.useCases.valueChart.mainSeries[0]"
       // data: [1, 2, 2, 3, 4, 4, 5, 6, 7, 8],
     },
     {
       // name: 'Steppe',
-      nameId: "feedback.useCases.valueChart.mainSeries2",
+      nameId: "feedback.useCases.valueChart.mainSeries[1]",
       type: 'bar',
       barGap: 0.1,
       yAxisIndex: 1,
-      dataId: "feedback.useCases.valueChart.mainSeries2",
+      dataId: "feedback.useCases.valueChart.mainSeries[1]",
       // data: [25, 50, 75, 100, 125, 150, 200, 224, 250, 275]
     }
   ]

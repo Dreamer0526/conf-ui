@@ -16,9 +16,7 @@ export default {
       tooltipTitle: "{category} - Recent use cases {series} changes",
       tooltipX: ["Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May"],
       tooltipY: "Average value (ten thousand yuan)",
-      tooltipSeries1: "High-potential improvement use case",
-      tooltipSeries2: "Highest value use case",
-      tooltipSeries3: "Lowest value use case",
+      tooltipSeries: ["High-potential improvement use case", "Highest value use case", "Lowest value use case"],
     }
   },
   branches: {
