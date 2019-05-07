@@ -65,18 +65,20 @@ class UseCasesChart extends React.Component {
 
       value.forEach((conf, index) => {
         const { nameId, dataId } = conf;
-        if (!nameId && !dataId) return;
-
         const path = `${attr}[${index}]`;
 
-        // data
-        const numbers = get(data, dataId, 0);
-        set(option, `${path}.data`, numbers);
+        // fill in data
+        if (dataId) {
+          const numbers = get(data, dataId, 0);
+          set(option, `${path}.data`, numbers);
+        }
 
         // localization
-        const text = get(messages, nameId, "");
-        const key = attr !== "xAxis" ? "name" : "data";
-        set(option, `${path}.${key}`, text);
+        if (nameId) {
+          const text = get(messages, nameId, "");
+          const key = attr !== "xAxis" ? "name" : "data";
+          set(option, `${path}.${key}`, text);
+        }
       });
 
     });

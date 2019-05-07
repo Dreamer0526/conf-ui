@@ -1,5 +1,6 @@
 import React from "react";
 import { Layout } from 'antd';
+import squish from "object-squish";
 import { connect } from "react-redux";
 import { BrowserRouter, Route } from "react-router-dom";
 
@@ -23,7 +24,7 @@ class App extends React.Component {
     return (
       <div id="app">
         <BrowserRouter>
-          <IntlProvider locale={locale} messages={messages}>
+          <IntlProvider locale={locale} messages={squish(messages)}>
 
             <Layout className="app-layout">
               <Layout.Sider collapsed>

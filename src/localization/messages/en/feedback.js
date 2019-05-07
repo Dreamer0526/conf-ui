@@ -11,8 +11,7 @@ export default {
       mainX: ["Platinum criticality", "Wealthy family", "Financing expires", "VIPs fall back", "High potential", "Loss warning", "Wage generation", "MGM", "Pure cross", "Insurance marketing"],
       mainY1: "Average value (ten thousand yuan)",
       mainY2: "Total value of clues (million yuan)",
-      mainSeries1: "Average value",
-      mainSeries2: "Total value of clues",
+      mainSeries: ["Average value", "Total value of clues"],
 
       tooltipTitle: "{category} - Recent use cases {series} changes",
       tooltipX: ["Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May"],
