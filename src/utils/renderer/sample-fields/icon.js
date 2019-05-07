@@ -3,7 +3,7 @@ import { ICON } from "../../../constants/componentTypes";
 export const icon = {
   type: ICON,
   badge: {
-    dataId: "userCases.msgCount"
+    dataId: "useCases.msgCount"
   },
   size: 1,
   icon: "users"

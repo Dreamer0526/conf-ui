@@ -1,19 +1,26 @@
 import React from "react";
 import { get, set } from 'lodash';
+import { Collapse, Row } from "antd";
 import { connect } from "react-redux";
-import { Collapse, Button, Icon, Row } from "antd";
-
 import ReactEcharts from "echarts-for-react";
+import { FormattedMessage } from "react-intl";
+import Chart from "../../utils/renderer/Chart";
+
+import getLineOption from "./metadata/lineChartOption";
 
 
-const tooltipWidth = 700, tooltipHeight = 300;
+const tooltipWidth = 700;
 const pointerBias = { x: -120, y: -50 };
 
 const origin = {
   activeCollapseKey: null,
+
+  tooltipX: 0,
+  tooltipY: 0,
   showTooltip: false,
-  left: 0,
-  top: 0,
+  tooltipDataIndex: 0,
+  tooltipSeriesIndex: 0,
+  tooltipChartOption: {}
 };
 
 class UseCasesChart extends React.Component {
@@ -78,38 +85,55 @@ class UseCasesChart extends React.Component {
   }
 
 
-  render() {
-    const { top, left, showTooltip, activeCollapseKey } = this.state;
-    const visibility = showTooltip ? "visible" : "hidden";
+  renderTooltip() {
+    const { tooltipX, tooltipY, tooltipChartOption, tooltipDataIndex, tooltipSeriesIndex } = this.state;
+    const { messages } = this.props;
 
-    const mainChart = (
-      <ReactEcharts
-        ref={e => this.chart = e}
-        option={this.getOption()}
-        onEvents={this.onEvents}
-      />
-    );
-    const tooltipChart = this.renderLineChart();
-    const collapseChart = this.renderLineChart();
+    const category = get(messages, "feedback.useCases.valueChart.mainX")[tooltipDataIndex];
+    const series = get(messages, `feedback.useCases.valueChart.mainY${tooltipSeriesIndex + 1}`);
 
     return (
-      <div onMouseMove={this.handleMouseMove} >
+      <div
+        style={{ top: tooltipY, left: tooltipX, width: tooltipWidth }}
+        className="tooltip-chart-container"
+      >
+        <h1 className="base-margin-top">
+          <FormattedMessage
+            id="feedback.useCases.valueChart.tooltipTitle"
+            values={{ category, series }}
+          />
+        </h1>
+        <Chart option={tooltipChartOption} />
+      </div>
+    );
+  }
+
+  render() {
+    const { showTooltip, activeCollapseKey } = this.state;
+
+    const mainChart = (
+      <div onMouseMove={this.handleMouseMove}>
+        <ReactEcharts
+          ref={e => this.chart = e}
+          option={this.getOption()}
+          onEvents={this.onEvents}
+        />
+      </div>
+    );
+
+    return (
+      <div id="use-case-chart">
         <Collapse
           bordered={false}
           activeKey={activeCollapseKey}
           onChange={this.handleCollapse}
         >
-          <Collapse.Panel key="1"
-            showArrow={false}
-            header={mainChart}
-          >
-            {collapseChart}
+          <Collapse.Panel key="1" showArrow={false} header={mainChart}>
+            {this.renderLineChart()}
           </Collapse.Panel>
         </Collapse>
 
-        <div className="tooltip-chart-container" style={{ top, left, visibility, width: tooltipWidth, height: tooltipHeight }} >
-          {tooltipChart}
-        </div>
+        {showTooltip && this.renderTooltip()}
       </div>
     );
   }
@@ -132,6 +156,19 @@ class UseCasesChart extends React.Component {
   handleMouseOver(params) {
     clearTimeout(this.timer);
 
+    const { dataIndex, seriesIndex } = params;
+    const tooltipChartOption = getLineOption({
+      prefix: "feedback.useCases.valueChart.tooltip",
+      dataIndex,
+      seriesIndex,
+      seriesCount: 3
+    });
+    this.setState({
+      tooltipChartOption,
+      tooltipDataIndex: dataIndex,
+      tooltipSeriesIndex: seriesIndex
+    });
+
     this.timer = setTimeout(() => {
       this.setState({ showTooltip: true });
     }, 500);
@@ -142,8 +179,8 @@ class UseCasesChart extends React.Component {
     const maxLeft = windowWidth - tooltipWidth - 20;
 
     this.setState({
-      top: event.clientY + pointerBias.y,
-      left: Math.min(event.clientX, maxLeft) + pointerBias.x
+      tooltipY: event.clientY + pointerBias.y,
+      tooltipX: Math.min(event.clientX, maxLeft) + pointerBias.x
     });
   }
 

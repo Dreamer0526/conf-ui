@@ -47,13 +47,13 @@ const buttonField = {
 
 }
 
-const userCasesDescriptor = [
-  { ...title("feedback.userCases.chartTitle", dateField), width: 16 },
+const useCasesDescriptor = [
+  { ...title("feedback.useCases.chartTitle", dateField), width: 16 },
   radioField,
 
   chartField,
 
-  { ...title("feedback.userCases.insightTitle", dateField), width: 16 },
+  { ...title("feedback.useCases.insightTitle", dateField), width: 16 },
   buttonField,
 
   {
@@ -66,4 +66,4 @@ const userCasesDescriptor = [
   }
 ];
 
-export default userCasesDescriptor;
+export default useCasesDescriptor;

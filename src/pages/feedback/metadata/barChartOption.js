@@ -3,7 +3,6 @@ import assign from 'lodash/assign';
 
 const axisTick = { show: false };
 const splitLine = { show: false };
-const textStyle = { color: "grey" };
 const axisLine = { lineStyle: { type: "solid", color: "grey" } };
 
 const yAxis = nameId => ({
@@ -15,8 +14,9 @@ const yAxis = nameId => ({
 });
 
 const option = {
+  animation: false,
   color: ['#00C9FE', '#0082F0'],
-  textStyle,
+  textStyle: { color: "grey" },
   legend: { left: 0 },
   tooltip: {
     trigger: "axis",
@@ -27,30 +27,30 @@ const option = {
     type: 'category',
     axisTick,
     axisLine,
-    nameId: "feedback.userCases.valueChartX"
+    nameId: "feedback.useCases.valueChart.mainX"
     // data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
   }],
   yAxis: [
-    yAxis("feedback.userCases.valueChartY1"),
-    yAxis("feedback.userCases.valueChartY2")
+    yAxis("feedback.useCases.valueChart.mainY1"),
+    yAxis("feedback.useCases.valueChart.mainY2")
   ],
   series: [
     {
       // name: 'Forest',
-      nameId: "feedback.userCases.valueChartSeries1",
+      nameId: "feedback.useCases.valueChart.mainSeries1",
       type: 'bar',
       barGap: 0.1,
       yAxisIndex: 0,
-      dataId: "feedback.userCases.valueChartSeries1"
+      dataId: "feedback.useCases.valueChart.mainSeries1"
       // data: [1, 2, 2, 3, 4, 4, 5, 6, 7, 8],
     },
     {
       // name: 'Steppe',
-      nameId: "feedback.userCases.valueChartSeries2",
+      nameId: "feedback.useCases.valueChart.mainSeries2",
       type: 'bar',
       barGap: 0.1,
       yAxisIndex: 1,
-      dataId: "feedback.userCases.valueChartSeries2",
+      dataId: "feedback.useCases.valueChart.mainSeries2",
       // data: [25, 50, 75, 100, 125, 150, 200, 224, 250, 275]
     }
   ]

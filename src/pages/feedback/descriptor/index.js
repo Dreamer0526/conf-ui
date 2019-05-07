@@ -1,14 +1,14 @@
 import * as COMPONENT from "../../../constants/componentTypes";
 import { tabTitle } from "../../../fields/texts";
-import userCasesDesc from "./userCases";
+import useCasesDesc from "./useCases";
 
 
 const feedbackTabs = {
   type: COMPONENT.TABS,
   tabs: [{
-    key: "userCases",
-    title: tabTitle("cases", "feedback.userCases.msgCount", "feedback.userCases.title"),
-    children: userCasesDesc
+    key: "useCases",
+    title: tabTitle("cases", "feedback.useCases.msgCount", "feedback.useCases.title"),
+    children: useCasesDesc
   }, {
     key: "branches",
     title: tabTitle("bran", "feedback.branches.msgCount", "feedback.branches.title"),

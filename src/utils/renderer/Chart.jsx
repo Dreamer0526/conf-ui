@@ -1,63 +1,58 @@
 import React from "react";
 import { Col } from "antd";
-import get from 'lodash/get';
+import { get, set } from 'lodash';
 import { connect } from "react-redux";
 import ReactEcharts from "echarts-for-react";
 
 
 class Chart extends React.Component {
-  axisLocalization(chartAxis) {
-    const { messages } = this.props;
+  chart = null;
 
-    return chartAxis.map(axis => {
-      const { textId } = axis;
-      if (!textId) return axis;
-
-      const data = get(messages, textId, []);
-      return { ...axis, data };
-    });
-  }
-
-  setColorAndData(chartSeries) {
-    return chartSeries.map(series => {
-      const { dataId, itemStyle = {} } = series;
-      // if (!dataId) return series;
-
-      const { color } = this.props;
-      const data = get(this.props.data, dataId, []);
-
-      return {
-        ...series, data,
-        itemStyle: {
-          ...itemStyle,
-          color
-        }
-      }
-    });
+  /**
+   * @desc manually setOption for echart when updated
+   */
+  componentDidUpdate() {
+    const option = this.getOption();
+    this.chart.getEchartsInstance().setOption(option);
   }
 
   getOption() {
-    const { option = {} } = this.props;
-    const { series = [], xAxis = [], yAxis = [] } = option;
+    const { option, messages, data } = this.props;
 
-    const modifiedXAxis = this.axisLocalization(xAxis);
-    const modifiedYAxis = this.axisLocalization(yAxis);
-    const modifiedSeries = this.setColorAndData(series);
+    /**
+     * @desc Replace placeholder with data/localization
+     */
+    Object.keys(option).forEach(attr => {
+      const value = option[attr];
+      if (!(value instanceof Array)) return;
 
-    return {
-      ...option,
-      xAxis: modifiedXAxis,
-      yAxis: modifiedYAxis,
-      series: modifiedSeries,
-    };
+      value.forEach((conf, index) => {
+        const { nameId, dataId } = conf;
+        if (!nameId && !dataId) return;
+
+        const path = `${attr}[${index}]`;
+
+        // data
+        const numbers = get(data, dataId, 0);
+        set(option, `${path}.data`, numbers);
+
+        // localization
+        const text = get(messages, nameId, "");
+        const key = attr !== "xAxis" ? "name" : "data";
+        set(option, `${path}.${key}`, text);
+      });
+
+    });
+
+    return option;
   }
 
   render() {
-    const { width = 24, offset = 0, notMerge = true, cssFor } = this.props;
+    const { width = 24, offset = 0, cssFor } = this.props;
 
     return (
       <Col xs={width} offset={offset} className={`renderer-chart ${cssFor}`}>
-        <ReactEcharts option={this.getOption()} notMerge={notMerge} className="chart" />
+        <ReactEcharts ref={e => this.chart = e} option={this.getOption()} />
       </Col>
     );
   }
@@ -65,8 +60,8 @@ class Chart extends React.Component {
 
 
 const mapStateToProps = state => ({
-  color: state.setting.colors["--color-border"],
-  messages: state.setting.messages
+  messages: state.setting.messages,
+  data: state
 });
 
 export default connect(
