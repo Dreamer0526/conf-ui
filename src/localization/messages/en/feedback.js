@@ -8,11 +8,17 @@ export default {
     insightTitle: "Intelligent insights",
 
     mainX: ["Platinum criticality", "Wealthy family", "Financing expires", "VIPs fall back", "High potential", "Loss warning", "Wage generation", "MGM", "Pure cross", "Insurance marketing"],
-    mainY1: "Average value (ten thousand yuan)",
-    mainY2: "Total value of clues (million yuan)",
+    mainY1: {
+      leadValue: "Average value (ten thousand yuan)",
+      execConversion: "Conversion rate"
+    },
+    mainY2: {
+      leadValue: "Total value of clues (million yuan)",
+      execConversion: "Exacutive rate"
+    },
     mainSeries: {
-      value: ["Average value", "Total value of clues"],
-      exec: ["Conversion rate", "Exacutive rate"]
+      leadValue: ["Average value", "Total value of clues"],
+      execConversion: ["Conversion rate", "Exacutive rate"]
     },
 
     tooltipTitle: "{category} - Recent use cases {series} changes",
