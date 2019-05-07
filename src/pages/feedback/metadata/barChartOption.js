@@ -1,6 +1,3 @@
-import assign from 'lodash/assign';
-
-
 const axisTick = { show: false };
 const splitLine = { show: false };
 const axisLine = { lineStyle: { type: "solid", color: "grey" } };
@@ -57,4 +54,4 @@ const option = {
 };
 
 
-export default config => assign(option, config);
+export default option;

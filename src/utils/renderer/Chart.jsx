@@ -1,5 +1,4 @@
 import React from "react";
-import { Col } from "antd";
 import { get, set } from 'lodash';
 import { connect } from "react-redux";
 import ReactEcharts from "echarts-for-react";
@@ -50,12 +49,8 @@ class Chart extends React.Component {
   }
 
   render() {
-    const { width = 24, offset = 0, cssFor } = this.props;
-
     return (
-      <Col xs={width} offset={offset} className={`renderer-chart ${cssFor}`}>
-        <ReactEcharts ref={e => this.chart = e} option={this.getOption()} />
-      </Col>
+      <ReactEcharts ref={e => this.chart = e} option={this.getOption()} />
     );
   }
 }

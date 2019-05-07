@@ -17,6 +17,11 @@ export default {
       tooltipX: ["Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May"],
       tooltipY: "Average value (ten thousand yuan)",
       tooltipSeries: ["High-potential improvement use case", "Highest value use case", "Lowest value use case"],
+
+      collapseTitle: "{category} use case execution and comparison",
+      collapseX: ["Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar"],
+      collapseY: "Average value (ten thousand yuan)",
+      collapseSeries: ["Average AUM change - Executive group", "Average AUM change - Control group"],
     }
   },
   branches: {
