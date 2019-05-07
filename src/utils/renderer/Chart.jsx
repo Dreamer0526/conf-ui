@@ -49,8 +49,10 @@ class Chart extends React.Component {
   }
 
   render() {
+    const { ...rest } = this.props;
+
     return (
-      <ReactEcharts ref={e => this.chart = e} option={this.getOption()} />
+      <ReactEcharts ref={e => this.chart = e} option={this.getOption()} {...rest} />
     );
   }
 }

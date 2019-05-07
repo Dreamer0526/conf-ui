@@ -9,6 +9,10 @@
     vertical-align: middle;
     margin-right: 5px;
 
+    &.triangle {
+      background-image: url("../static/icons/icon_triangle.png");
+    }    
+
     &.close {
       background-image: url("../static/icons/icon_close.png");
     }

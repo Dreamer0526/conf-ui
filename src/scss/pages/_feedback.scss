@@ -19,6 +19,7 @@
 }
 
 .collapse-chart-container {
+  height: 300px;
   border-radius: 5px;
   text-align: center;
 
@@ -28,5 +29,14 @@
 
   &.execConversion {
     border: 2px var(--color-yellow-bar1) solid;
+  }
+
+  .collapse-chart {
+    height: 270px !important;
+  }
+
+  .collapse-chart-pointer {
+    position: absolute;
+    margin: -15px;
   }
 }

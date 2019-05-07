@@ -14,13 +14,15 @@ const tooltipWidth = 700;
 const pointerBias = { x: -120, y: -50 };
 
 const origin = {
+  mousePosX: 0,
+  mousePosY: 0,
+
   showTooltip: false,
-  tooltipX: 0,
-  tooltipY: 0,
   tooltipTitle: null,
   tooltipChartOption: {},
 
   showCollapse: false,
+  pointerPos: 0,
   collapseTitle: null,
   collapseChartOption: {},
 };
@@ -55,7 +57,7 @@ class UseCasesChart extends React.Component {
   }
 
   getOption() {
-    const { activeChart,messages, data } = this.props;
+    const { activeChart, messages, data } = this.props;
 
     const option = getBarOption(activeChart);
     /**
@@ -90,12 +92,17 @@ class UseCasesChart extends React.Component {
 
 
   renderTooltip() {
-    const { tooltipX, tooltipY, tooltipChartOption, tooltipTitle } = this.state;
+    const { mousePosX, mousePosY, tooltipChartOption, tooltipTitle } = this.state;
     const { activeChart } = this.props;
+
+    const windowWidth = document.body.clientWidth;
+    const maxLeft = windowWidth - tooltipWidth - 20;
+    const top = mousePosY + pointerBias.y;
+    const left = Math.min(mousePosX, maxLeft) + pointerBias.x;
 
     return (
       <div
-        style={{ top: tooltipY, left: tooltipX, width: tooltipWidth }}
+        style={{ top, left, width: tooltipWidth }}
         className={`tooltip-chart-container ${activeChart}`}
       >
         {tooltipTitle}
@@ -105,14 +112,15 @@ class UseCasesChart extends React.Component {
   }
 
   renderCollapse() {
-    const { collapseTitle, collapseChartOption } = this.state;
+    const { collapseTitle, collapseChartOption, pointerPos } = this.state;
     const { activeChart } = this.props;
 
     return (
       <div className={`collapse-chart-container ${activeChart}`}>
+        <span className="icon-2x triangle collapse-chart-pointer" style={{ left: pointerPos + pointerBias.x }} />
         <span className="icon-2x close pull-right half-margin" onClick={() => this.setState({ showCollapse: false })} />
         {collapseTitle}
-        <Chart option={collapseChartOption} />
+        <Chart option={collapseChartOption} className="collapse-chart" />
       </div>
     );
   }
@@ -149,7 +157,9 @@ class UseCasesChart extends React.Component {
     if (dataIndex < 0) return;
 
     this.configCollapse(params);
-    this.setState({ showCollapse: true });
+
+    const { mousePosX } = this.state;
+    this.setState({ showCollapse: true, pointerPos: mousePosX });
   }
 
   handleMouseOut() {
@@ -167,13 +177,8 @@ class UseCasesChart extends React.Component {
   }
 
   handleMouseMove(event) {
-    const windowWidth = document.body.clientWidth;
-    const maxLeft = windowWidth - tooltipWidth - 20;
-
-    this.setState({
-      tooltipY: event.clientY + pointerBias.y,
-      tooltipX: Math.min(event.clientX, maxLeft) + pointerBias.x
-    });
+    const { clientX, clientY } = event;
+    this.setState({ mousePosX: clientX, mousePosY: clientY });
   }
 
 
