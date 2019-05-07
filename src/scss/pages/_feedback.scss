@@ -1,5 +1,5 @@
 .tooltip-chart-container {
-  position: absolute;
+  position: fixed;
 
   z-index: 99;
   text-align: center;
@@ -27,7 +27,7 @@
     border: 2px var(--color-blue-bar1) solid;
 
     .collapse-chart-pointer {
-      position: absolute;
+      position: fixed;
       margin: -15px;
       height: 18px;
       width:  18px;
@@ -43,7 +43,7 @@
     border: 2px var(--color-yellow-bar1) solid;
 
     .collapse-chart-pointer {
-      position: absolute;
+      position: fixed;
       margin: -15px;
       height: 18px;
       width:  18px;

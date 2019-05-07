@@ -98,9 +98,9 @@ class PageRenderer extends React.Component {
     );
   }
 
-  renderButton({ textId, events = {}, cssFor = "", name = "", styleType = "" }) {
+  renderButton({ textId, events = {}, cssFor = "", name = "", styleType = "", ...rest }) {
     return (
-      <Button className={cssFor} {...this.registerEvents(events)} name={name} type={styleType} >
+      <Button {...rest} className={cssFor} {...this.registerEvents(events)} name={name} type={styleType} >
         <FormattedMessage
           id={textId}
           defaultMessage={textId}

@@ -1,7 +1,8 @@
 import * as COMPONENT from "../constants/componentTypes";
 
 const styleType = "primary";
-
+const cssFor = "font-12";
+const size = "small";
 
 const badgeField = {
   type: COMPONENT.ICON,
@@ -31,22 +32,22 @@ const tagField = {
   children: [{
     type: COMPONENT.TAG,
     name: "sampleTag",
-    cssFor: "font-12",
+    cssFor,
     events: {
       onClick: "click on tag"
     },
     textId: "大众总价值低"
   }, {
     type: COMPONENT.TAG,
-    cssFor: "font-12",
+    cssFor,
     textId: "大众平均价值低"
   }, {
     type: COMPONENT.TAG,
-    cssFor: "font-12",
+    cssFor,
     textId: "有效总价值低"
   }, {
     type: COMPONENT.TAG,
-    cssFor: "font-12",
+    cssFor,
     textId: "有效平均价值低"
   }]
 };
@@ -55,16 +56,16 @@ const footerField = {
   cssFor: "insight-card-footer",
   children: [{
     type: COMPONENT.BUTTON,
-    cssFor: "font-12",
+    cssFor, size,
     textId: "影响评估"
   }, {
     type: COMPONENT.BUTTON,
-    cssFor: "font-12",
+    cssFor, size,
     textId: "邮件通知"
   }, {
     type: COMPONENT.BUTTON,
     styleType,
-    cssFor: "font-12",
+    cssFor, size,
     textId: "执行并通知"
   }]
 };

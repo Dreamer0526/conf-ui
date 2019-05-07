@@ -12,7 +12,6 @@ import getLineOption from "./metadata/lineChartOption";
 
 
 const tooltipWidth = 700;
-const pointerBias = { x: -120, y: -50 };
 
 const origin = {
   mousePosX: 0,
@@ -49,19 +48,21 @@ class UseCasesChart extends BaseChart {
 
 
   renderTooltip() {
-    const { mousePosX, mousePosY, tooltipChartOption, tooltipTitle } = this.state;
+    const { showTooltip, mousePosX, mousePosY, tooltipChartOption, tooltipTitle } = this.state;
     const { activeChart } = this.props;
 
+    if (!showTooltip) return;
+
     const windowWidth = document.body.clientWidth;
-    const maxLeft = windowWidth - tooltipWidth - 20;
-    const top = mousePosY + pointerBias.y;
-    const left = Math.min(mousePosX, maxLeft) + pointerBias.x;
+    const maxLeft = windowWidth - tooltipWidth;
+    const style = {
+      top: mousePosY + 5,
+      left: Math.max(0, Math.min(mousePosX, maxLeft)) + 5,
+      width: tooltipWidth
+    };
 
     return (
-      <div
-        style={{ top, left, width: tooltipWidth }}
-        className={`tooltip-chart-container ${activeChart}`}
-      >
+      <div style={style} className={`tooltip-chart-container ${activeChart}`}>
         {tooltipTitle}
         <Chart option={tooltipChartOption} />
       </div>
@@ -74,7 +75,7 @@ class UseCasesChart extends BaseChart {
 
     return (
       <div className={`collapse-chart-container ${activeChart}`}>
-        <span className="collapse-chart-pointer" style={{ left: pointerPos + pointerBias.x }} />
+        <span className="collapse-chart-pointer" style={{ left: pointerPos + 5 }} />
         <span className="icon-2x close pull-right half-margin" onClick={() => this.setState({ showCollapse: false })} />
         {collapseTitle}
         <Chart option={collapseChartOption} className="collapse-chart" />
@@ -83,7 +84,7 @@ class UseCasesChart extends BaseChart {
   }
 
   render() {
-    const { showTooltip, showCollapse } = this.state;
+    const { showCollapse } = this.state;
     const { activeChart } = this.props;
     const option = getBarOption(activeChart);
 
@@ -98,7 +99,7 @@ class UseCasesChart extends BaseChart {
 
     return (
       <div id="use-case-chart">
-        {showTooltip && this.renderTooltip()}
+        {this.renderTooltip()}
 
         <Collapse bordered={false} activeKey={showCollapse.toString()}>
           <Collapse.Panel key="true" showArrow={false} header={mainChart}>
