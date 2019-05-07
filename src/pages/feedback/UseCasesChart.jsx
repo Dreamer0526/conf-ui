@@ -172,24 +172,24 @@ class UseCasesChart extends React.Component {
     });
   }
 
-  
+
   configTooltip({ dataIndex, seriesIndex }) {
     const { data, messages } = this.props;
 
-    const category = get(messages, `feedback.useCases.valueChart.mainX[${dataIndex}]`);
-    const series = get(messages, `feedback.useCases.valueChart.mainY${seriesIndex + 1}`);
+    const category = get(messages, `feedback.useCases.mainX[${dataIndex}]`);
+    const series = get(messages, `feedback.useCases.mainY${seriesIndex + 1}`);
     const tooltipTitle = (
       <h1 className="base-margin-top">
         <FormattedMessage
-          id="feedback.useCases.valueChart.tooltipTitle"
+          id="feedback.useCases.tooltipTitle"
           values={{ category, series }}
         />
       </h1>
     );
 
-    const xLabel = get(messages, "feedback.useCases.valueChart.tooltipX");
-    const seriesName = get(messages, "feedback.useCases.valueChart.tooltipSeries");
-    const seriesData = get(data, `feedback.useCases.valueChart.tooltipSeries.${dataIndex}.${seriesIndex}`);
+    const xLabel = get(messages, "feedback.useCases.tooltipX");
+    const seriesName = get(messages, "feedback.useCases.tooltipSeries");
+    const seriesData = get(data, `feedback.useCases.tooltipSeries.${dataIndex}.${seriesIndex}`);
     const tooltipChartOption = getLineOption({ xLabel, seriesName, seriesData });
 
     this.setState({ tooltipTitle, tooltipChartOption });
@@ -198,19 +198,19 @@ class UseCasesChart extends React.Component {
   configCollapse({ dataIndex, seriesIndex }) {
     const { data, messages } = this.props;
 
-    const category = get(messages, `feedback.useCases.valueChart.mainX[${dataIndex}]`);
+    const category = get(messages, `feedback.useCases.mainX[${dataIndex}]`);
     const collapseTitle = (
       <h1 className="base-margin-top">
         <FormattedMessage
-          id="feedback.useCases.valueChart.collapseTitle"
+          id="feedback.useCases.collapseTitle"
           values={{ category }}
         />
       </h1>
     );
 
-    const xLabel = get(messages, "feedback.useCases.valueChart.collapseX");
-    const seriesName = get(messages, "feedback.useCases.valueChart.collapseSeries");
-    const seriesData = get(data, `feedback.useCases.valueChart.collapseSeries.${dataIndex}.${seriesIndex}`);
+    const xLabel = get(messages, "feedback.useCases.collapseX");
+    const seriesName = get(messages, "feedback.useCases.collapseSeries");
+    const seriesData = get(data, `feedback.useCases.collapseSeries.${dataIndex}.${seriesIndex}`);
     const collapseChartOption = getLineOption({ xLabel, seriesName, seriesData });
 
     this.setState({ collapseTitle, collapseChartOption });

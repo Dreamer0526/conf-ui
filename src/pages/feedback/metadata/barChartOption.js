@@ -24,30 +24,30 @@ const option = {
     type: 'category',
     axisTick,
     axisLine,
-    nameId: "feedback.useCases.valueChart.mainX"
+    nameId: "feedback.useCases.mainX"
     // data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
   }],
   yAxis: [
-    yAxis("feedback.useCases.valueChart.mainY1"),
-    yAxis("feedback.useCases.valueChart.mainY2")
+    yAxis("feedback.useCases.mainY1"),
+    yAxis("feedback.useCases.mainY2")
   ],
   series: [
     {
       // name: 'Forest',
-      nameId: "feedback.useCases.valueChart.mainSeries[0]",
+      nameId: "feedback.useCases.mainSeries[0]",
       type: 'bar',
       barGap: 0.1,
       yAxisIndex: 0,
-      dataId: "feedback.useCases.valueChart.mainSeries[0]"
+      dataId: "feedback.useCases.mainSeries[0]"
       // data: [1, 2, 2, 3, 4, 4, 5, 6, 7, 8],
     },
     {
       // name: 'Steppe',
-      nameId: "feedback.useCases.valueChart.mainSeries[1]",
+      nameId: "feedback.useCases.mainSeries[1]",
       type: 'bar',
       barGap: 0.1,
       yAxisIndex: 1,
-      dataId: "feedback.useCases.valueChart.mainSeries[1]",
+      dataId: "feedback.useCases.mainSeries[1]",
       // data: [25, 50, 75, 100, 125, 150, 200, 224, 250, 275]
     }
   ]

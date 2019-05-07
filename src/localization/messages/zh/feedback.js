@@ -7,22 +7,20 @@ export default {
     chartTitle: "所有用例执行参照对比",
     insightTitle: "反馈模型智能洞见",
 
-    valueChart: {
-      mainX: ["白金临界", "富裕家庭", "理财到期", "贵宾回落", "高潜提升", "流失预警", "工资代发", "MGM", "纯活交叉", "保险营销"],
-      mainY1: "平均价值（万元）",
-      mainY2: "线索总价值（百万元）",
-      mainSeries: ["平均价值", "线索总价值"],
+    mainX: ["白金临界", "富裕家庭", "理财到期", "贵宾回落", "高潜提升", "流失预警", "工资代发", "MGM", "纯活交叉", "保险营销"],
+    mainY1: "平均价值（万元）",
+    mainY2: "线索总价值（百万元）",
+    mainSeries: ["平均价值", "线索总价值"],
 
-      tooltipTitle: "{category} - 近期用例{series}变化图",
-      tooltipX: ["6月", "7月", "8月", "9月", "10月", "11月", "12月", "1月", "2月", "3月", "4月", "5月"],
-      tooltipY: "平均价值（万元）",
-      tooltipSeries: ["高潜提升用例", "最高价值用例", "最低价值用例"],
+    tooltipTitle: "{category} - 近期用例{series}变化图",
+    tooltipX: ["6月", "7月", "8月", "9月", "10月", "11月", "12月", "1月", "2月", "3月", "4月", "5月"],
+    tooltipY: "平均价值（万元）",
+    tooltipSeries: ["高潜提升用例", "最高价值用例", "最低价值用例"],
 
-      collapseTitle: "{category}用例执行与对照",
-      collapseX: ["6月", "7月", "8月", "9月", "10月", "11月", "12月", "1月", "2月", "3月"],
-      collapseY: "平均价值（万元）",
-      collapseSeries: ["执行组平均AUM变动", "对照组平均AUM变动"],
-    }
+    collapseTitle: "{category}用例执行与对照",
+    collapseX: ["6月", "7月", "8月", "9月", "10月", "11月", "12月", "1月", "2月", "3月"],
+    collapseY: "平均价值（万元）",
+    collapseSeries: ["执行组平均AUM变动", "对照组平均AUM变动"],
 
   },
   branches: {
