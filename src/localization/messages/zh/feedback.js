@@ -36,6 +36,15 @@ export default {
     title: "分行"
   },
   custGroups: {
-    title: "客群"
+    title: "客群",
+    chartTitle: "所有客群执行参照对比",
+
+    mainX: ["白金临界", "富裕家庭", "理财到期", "贵宾回落", "高潜提升", "流失预警", "工资代发", "MGM", "纯活交叉", "保险营销"],
+    mainY: ["大众", "有效", "黄金", "白金", "钻石", "私行"],
+
+    tooltipTitle: "{categoryY}客户 {categoryX}",
+    tooltipX: ["6月", "7月", "8月", "9月", "10月", "11月", "12月", "1月", "2月", "3月"],
+    tooltipY: "平均价值（万元）",
+    tooltipSeries: ["未命名"],
   }
 };

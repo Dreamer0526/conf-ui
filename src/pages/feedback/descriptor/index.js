@@ -1,6 +1,7 @@
 import * as COMPONENT from "../../../constants/componentTypes";
 import { tabTitle } from "../../../fields/texts";
 import useCasesDesc from "./useCases";
+import custGroupsDesc from "./custGroups";
 
 
 const feedbackTabs = {
@@ -19,10 +20,7 @@ const feedbackTabs = {
   }, {
     key: "custGroups",
     title: tabTitle("users", "feedback.custGroups.msgCount", "feedback.custGroups.title"),
-    children: [{
-      type: COMPONENT.TEXT,
-      textId: "group"
-    }]
+    children: custGroupsDesc
   }]
 };
 
