@@ -15,18 +15,18 @@ const origin = {
 
 const settingReducer = (state = origin, action) => {
 
-  const { targetId = "", type } = action;
+  const { elemKey = "", type } = action;
 
   switch (type) {
     case ACTION.CHANGE_LANGUAGE:
       return {
         ...state,
-        locale: targetId,
-        messages: findMessages(targetId)
+        locale: elemKey,
+        messages: findMessages(elemKey)
       }
 
     case ACTION.CHANGE_THEME:
-      const colors = findScheme(targetId, true);
+      const colors = findScheme(elemKey, true);
       return {
         ...state,
         colors

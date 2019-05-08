@@ -4,6 +4,7 @@ import UseCasesChart from "../UseCasesChart";
 import { title } from "../../../fields/texts";
 import { insightCard } from "../../../fields/cards";
 
+import * as KEY from "../../../constants/elementKey";
 import * as ACTION from "../../../constants/actionTypes";
 import * as COMPONENT from "../../../constants/componentTypes";
 
@@ -17,12 +18,12 @@ const radioField = {
   events: {
     onChange: ACTION.SWITCH_USE_CASE_CHART
   },
-  defaultSelectedKey: "leadValue",
+  defaultSelectedKey: KEY.LEAD_VALUE,
   options: [{
-    key: "leadValue",
+    key: KEY.LEAD_VALUE,
     textId: "buttonLabels.leadValue"
   }, {
-    key: "execConversion",
+    key: KEY.EXEC_CONVERT,
     textId: "buttonLabels.execConversion"
   }]
 };

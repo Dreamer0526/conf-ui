@@ -156,18 +156,18 @@ class PageRenderer extends React.Component {
 
       const callback = e => {
         /**
-         * @desc get targetId for different type of elements
+         * @desc get elemKey for different type of elements
          */
-        const targetId = get(e, "key")  // dropdown item
+        const elemKey = get(e, "key")  // dropdown item
           || get(e, "target.value")     // buttonRadio
           || (e.currentTarget && e.currentTarget.getAttribute("name")) // button and tag
 
         /**
          * @todo remove log
          */
-        console.log(e, targetId)
+        console.log(e, elemKey)
 
-        const action = targetId ? { type: actionType, targetId } : { type: actionType };
+        const action = elemKey ? { type: actionType, elemKey } : { type: actionType };
         this.props.dispatch(action);
       };
 

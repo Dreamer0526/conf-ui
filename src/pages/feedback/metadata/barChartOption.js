@@ -1,62 +1,51 @@
-const axisTick = { show: false };
-const splitLine = { show: false };
+import { set } from "lodash";
+
 const axisLine = { lineStyle: { type: "solid", color: "grey" } };
 
-const execColor = ["#FFAB00", "#00CBC5"];
-const valueColor = ['#00C9FE', '#0082F0'];
 
-
-const yAxis = nameId => ({
-  type: "value",
+const yItem = name => ({
+  name,
   axisLine,
-  splitLine,
-  nameId,
+  type: "value",
+  splitLine: { show: false },
+});
+
+const seriesItem = (yAxisIndex, name, data) => ({
+  name,
+  data,
+  yAxisIndex,
+  type: "bar",
+  barGap: 0.1
 });
 
 
-function getOption(chartName) {
-  const color = (chartName === "leadValue") ? valueColor : execColor;
-
+function getBarOption(xData = [], nameDataPairs = {}) {
   const option = {
     animation: false,
-    textStyle: { color: "grey" },
     legend: { left: 0 },
+    textStyle: { color: "grey" },
     tooltip: {
       trigger: "axis",
       axisPointer: { type: "shadow" },
       formatter: () => ""
     },
-
-    color,
     xAxis: [{
-      axisTick,
-      axisLine,
+      axisTick: { show: false },
       type: "category",
-      nameId: "feedback.useCases.mainX"
+      data: xData,
+      axisLine,
     }],
-    yAxis: [
-      yAxis(`feedback.useCases.mainY1.${chartName}`),
-      yAxis(`feedback.useCases.mainY2.${chartName}`)
-    ],
-    series: [
-      {
-        type: "bar",
-        barGap: 0.1,
-        yAxisIndex: 0,
-        dataId: "feedback.useCases.mainSeries[0]",
-        nameId: `feedback.useCases.mainSeries.${chartName}[0]`,
-      },
-      {
-        type: "bar",
-        barGap: 0.1,
-        yAxisIndex: 1,
-        dataId: "feedback.useCases.mainSeries[1]",
-        nameId: `feedback.useCases.mainSeries.${chartName}[1]`,
-      }
-    ]
-  };
+    yAxis: [],
+    series: []
+  }
+
+  Object.keys(nameDataPairs).forEach((name, index) => {
+    const data = nameDataPairs[name];
+    set(option, `yAxis[${index}]`, yItem(name));
+    set(option, `series[${index}]`, seriesItem(index, name, data));
+  });
 
   return option;
-};
+}
 
-export default getOption;
+export default getBarOption;

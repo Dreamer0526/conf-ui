@@ -1,29 +1,21 @@
-.tooltip-chart-container {
-  position: fixed;
-
-  z-index: 99;
-  text-align: center;
-  background-color: white;
-
-  border-radius: 5px;
-
-  &.leadValue {
+.chart-container {
+  .tooltip-chart-container {
+    position: fixed;
+  
+    z-index: 99;
+    text-align: center;
+    background-color: white;
+  
+    border-radius: 5px;
     border: 2px var(--color-blue-bar1) solid;
-    box-shadow: 3px 3px 5px rgba(0, 79, 100, .5);
+    box-shadow: 3px 3px 5px rgba(115, 143, 151, 0.5);
   }
+  
 
-  &.execConversion {
-    border: 2px var(--color-yellow-bar1) solid;
-    box-shadow: 3px 3px 5px rgba(100, 67, 0, .5);
-  }
-}
-
-.collapse-chart-container {
-  height: 300px;
-  border-radius: 5px;
-  text-align: center;
-
-  &.leadValue {
+  .collapse-chart-container {
+    height: 300px;
+    text-align: center;
+    border-radius: 5px;
     border: 2px var(--color-blue-bar1) solid;
 
     .collapse-chart-pointer {
@@ -34,28 +26,35 @@
         
       background: no-repeat center center;
       background-size: contain;
-
       background-image: url("../static/icons/icon_triangle_blue.png");
     }
-  }
 
-  &.execConversion {
-    border: 2px var(--color-yellow-bar1) solid;
-
-    .collapse-chart-pointer {
-      position: fixed;
-      margin: -15px;
-      height: 18px;
-      width:  18px;
-        
-      background: no-repeat center center;
-      background-size: contain;
-
-      background-image: url("../static/icons/icon_triangle_yellow.png");
+    .collapse-chart {
+      height: 270px !important;
     }
   }
 
-  .collapse-chart {
-    height: 270px !important;
+
+  &.execConvert {
+    .tooltip-chart-container{
+      border: 2px var(--color-yellow-bar1) solid;
+      box-shadow: 3px 3px 5px rgba(100, 67, 0, .5);
+    }
+
+    .collapse-chart-container {
+      border: 2px var(--color-yellow-bar1) solid;
+
+      .collapse-chart-pointer {
+        // position: fixed;
+        // margin: -15px;
+        // height: 18px;
+        // width:  18px;
+          
+        // background: no-repeat center center;
+        // background-size: contain;
+        background-image: url("../static/icons/icon_triangle_yellow.png");
+      }
+    }
   }
+
 }
