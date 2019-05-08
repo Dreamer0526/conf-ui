@@ -29,7 +29,7 @@ export class BaseChart extends React.Component {
         // localization
         if (nameId) {
           const text = get(messages, nameId, "");
-          const key = attr !== "xAxis" ? "name" : "data";
+          const key = this.isAxisLabel(attr) ? "data" : "name";
           set(option, `${path}.${key}`, text);
         }
       });
@@ -37,6 +37,10 @@ export class BaseChart extends React.Component {
     });
 
     return option;
+  }
+
+  isAxisLabel(attrName) {
+    return attrName === "xAxis" || attrName === "yAxis";
   }
 
   render() {

@@ -1,5 +1,5 @@
 import React from "react";
-import UseCasesChart from "../UseCasesChart";
+import CustGroupsChart from "../CustGroupsChart";
 
 import { title } from "../../../fields/texts";
 
@@ -31,7 +31,7 @@ const radioField = {
 
 const chartField = {
   type: COMPONENT.COMPONENT,
-  component: <UseCasesChart />
+  component: <CustGroupsChart />
 };
 
 
